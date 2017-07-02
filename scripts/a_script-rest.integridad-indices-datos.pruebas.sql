@@ -109,3 +109,70 @@ go
 * Ingreso de datos de prueba
 *********************************************************************************************
 */
+-- *** Tabla Paises ***
+-- Insertar datos: output OK
+INSERT INTO Paises(codPais, nomPais)
+VALUES('1', 'Estados Unidos');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('2', 'Canadá');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('3', 'México');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('4', 'Argentina');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('5', 'Chile');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('6', 'Panamá');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('7', 'Pakistán');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('8', 'España');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('9', 'Brasil');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('J', 'Japón');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('K', 'Korea');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('S', 'Inglaterra');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('W', 'Alemania');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('Y', 'Suecia');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('Z', 'Italia');
+go
+-- Test primary key: output ERROR
+INSERT INTO Paises(codPais, nomPais)
+VALUES('1', 'Uruguay');
+go
+INSERT INTO Paises(nomPais)
+VALUES('Uruguay');
+go
+-- Test unicidad nomPais: output ERROR 
+INSERT INTO Paises(codPais, nomPais)
+VALUES('H', 'Alemania');
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('H', 'Suecia');
+go
+-- *** Tabla Fabricantes ***
+-- Insertar datos: output OK
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES();
+
+
