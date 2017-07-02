@@ -157,15 +157,23 @@ INSERT INTO Paises(codPais, nomPais)
 VALUES('Z', 'Italia');
 go
 -- Test primary key: output ERROR
+PRINT('Test PRIMARY KEY: se espera ERROR')
+go
 INSERT INTO Paises(codPais, nomPais)
 VALUES('1', 'Uruguay');
+go
+PRINT('Test PRIMARY KEY: se espera ERROR')
 go
 INSERT INTO Paises(nomPais)
 VALUES('Uruguay');
 go
--- Test unicidad nomPais: output ERROR 
+-- Test unicidad nomPais: output ERROR
+PRINT('Test UNIQUE: se espera ERROR')
+go  
 INSERT INTO Paises(codPais, nomPais)
 VALUES('H', 'Alemania');
+go
+PRINT('Test UNIQUE: se espera ERROR')
 go
 INSERT INTO Paises(codPais, nomPais)
 VALUES('H', 'Suecia');
@@ -239,20 +247,28 @@ INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('VA', 'Volkswagen', '21 Lon Tyr Haul, 9SF', 'volkswagen_factory1@volkswagen.com', 570);
 go
 -- Test primary key: output ERROR
+PRINT('Test PRIMARY KEY: se espera ERROR')
+go
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('VA', 'Renault', '7 John Knox Ln, 9QW', 'renault_factory1@renault.com', 570);
+go
+PRINT('Test PRIMARY KEY: se espera ERROR')
 go
 INSERT INTO Fabricantes(nomFab, dirFab, mailFab, cantEmp)
 VALUES('Renault', '7 John Knox Ln, 9QW', 'renault_factory1@renault.com', 570);
 go
--- Test unicidad mailFab: output ERROR 
+-- Test unicidad mailFab: output ERROR
+PRINT('Test UNIQUE: se espera ERROR')
+go 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('XA', 'Renault', '7 John Knox Ln, 9QW', 'volkswagen_factory1@volkswagen.com', 570);
+go
+PRINT('Test UNIQUE: se espera ERROR')
 go
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('XA', 'Renault', '7 John Knox Ln, 9QW', 'toyota_factory1@toyota.com', 570);
 go
--- *** Tabla Fabricantes ***
+-- *** Tabla Plantas ***
 
 
 
