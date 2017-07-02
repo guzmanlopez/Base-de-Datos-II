@@ -79,5 +79,33 @@ go
 * Creación de Índices
 *********************************************************************************************
 */
-
-
+-- Tabla Plantas
+CREATE INDEX idx_Plantas_codFab
+ON Plantas(codFab); 
+go
+CREATE INDEX idx_Plantas_codPais
+ON Plantas(codPais); 
+go
+-- Tabla Vehiculos
+CREATE INDEX idx_Vehiculos_codPais
+ON Vehiculos(codPais); 
+go
+CREATE INDEX idx_Vehiculos_codFab
+ON Vehiculos(codFab); 
+go
+-- Tabla Envios
+CREATE INDEX idx_Envios_oriEnvio
+ON Envios(oriEnvio); 
+go
+CREATE INDEX idx_Envios_desEnvio
+ON Envios(desEnvio); 
+go
+-- Tabla Carga
+CREATE INDEX idx_Carga_vin
+ON Carga(vin); 
+go
+/*
+*********************************************************************************************
+* Ingreso de datos de prueba
+*********************************************************************************************
+*/
