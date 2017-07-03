@@ -8,7 +8,7 @@ USE BD_VEHICULOS;
 go
 /*
 *********************************************************************************************
-* Creación de las Restricciones de Integridad
+* Creación de Restricciones de Integridad
 *********************************************************************************************
 */
 -- Tabla Paises
@@ -106,11 +106,12 @@ ON Carga(vin);
 go
 /*
 *********************************************************************************************
-* Ingreso de datos de prueba
+* Ingreso de datos de prueba: OK
 *********************************************************************************************
 */
--- *** Tabla Paises ***
--- Insertar datos: output OK
+-- *****************
+-- Tabla Paises 
+-- *****************
 INSERT INTO Paises(codPais, nomPais)
 VALUES('1', 'Estados Unidos');
 go
@@ -156,30 +157,9 @@ go
 INSERT INTO Paises(codPais, nomPais)
 VALUES('Z', 'Italia');
 go
--- Test primary key: output ERROR
-PRINT('Test PRIMARY KEY: se espera ERROR')
-go
-INSERT INTO Paises(codPais, nomPais)
-VALUES('1', 'Uruguay');
-go
-PRINT('Test PRIMARY KEY: se espera ERROR')
-go
-INSERT INTO Paises(nomPais)
-VALUES('Uruguay');
-go
--- Test unicidad nomPais: output ERROR
-PRINT('Test UNIQUE: se espera ERROR')
-go  
-INSERT INTO Paises(codPais, nomPais)
-VALUES('H', 'Alemania');
-go
-PRINT('Test UNIQUE: se espera ERROR')
-go
-INSERT INTO Paises(codPais, nomPais)
-VALUES('H', 'Suecia');
-go
--- *** Tabla Fabricantes ***
--- Insertar datos: output OK
+-- *****************
+-- Tabla Fabricantes
+-- *****************
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('AA', 'Audi', '12 The Horseshoes, Norton, Bury Saint Edmunds IP31 3NR', 'audi_factory1@audi.com', 120);
 go
@@ -246,29 +226,9 @@ go
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('VA', 'Volkswagen', '21 Lon Tyr Haul, 9SF', 'volkswagen_factory1@volkswagen.com', 570);
 go
--- Test primary key: output ERROR
-PRINT('Test PRIMARY KEY: se espera ERROR')
-go
-INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('VA', 'Renault', '7 John Knox Ln, 9QW', 'renault_factory1@renault.com', 570);
-go
-PRINT('Test PRIMARY KEY: se espera ERROR')
-go
-INSERT INTO Fabricantes(nomFab, dirFab, mailFab, cantEmp)
-VALUES('Renault', '7 John Knox Ln, 9QW', 'renault_factory1@renault.com', 570);
-go
--- Test unicidad mailFab: output ERROR
-PRINT('Test UNIQUE: se espera ERROR')
-go 
-INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('XA', 'Renault', '7 John Knox Ln, 9QW', 'volkswagen_factory1@volkswagen.com', 570);
-go
-PRINT('Test UNIQUE: se espera ERROR')
-go
-INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('XA', 'Renault', '7 John Knox Ln, 9QW', 'toyota_factory1@toyota.com', 570);
-go
--- *** Tabla Plantas ***
+-- *****************
+-- Tabla Plantas
+-- *****************
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('1', 'AA', 'Northland Auto Supply', '2335 Canton Hwy #6 Windsor', 'northlandas@nas.com', '1');
 go
@@ -341,28 +301,93 @@ go
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('5', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
 go
--- Test primary key: output ERROR
-PRINT('Test PRIMARY KEY: se espera ERROR')
+-- *****************
+-- Tabla Vehiculos
+-- *****************
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES();
+go
+/*
+*********************************************************************************************
+* Test restricciones de integridad: ERROR
+*********************************************************************************************
+*/
+-- *****************
+-- Tabla Paises
+-- *****************
+PRINT('Test PRIMARY KEY: se espera ERROR por repetir codPais')
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('1', 'Uruguay');
+go
+PRINT('Test PRIMARY KEY: se espera ERROR porque codPais no puede ser nulo')
+go
+INSERT INTO Paises(nomPais)
+VALUES('Uruguay');
+go
+PRINT('Test UNIQUE nomPais: se espera ERROR porque se repite nomPais')
+go  
+INSERT INTO Paises(codPais, nomPais)
+VALUES('H', 'Alemania');
+go
+PRINT('Test UNIQUE nomPais: se espera ERROR porque se repite nomPais')
+go
+INSERT INTO Paises(codPais, nomPais)
+VALUES('H', 'Suecia');
+go
+-- *****************
+-- Tabla Fabricantes
+-- *****************
+PRINT('Test PRIMARY KEY: se espera ERROR por repetir codFab')
+go
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('VA', 'Renault', '7 John Knox Ln, 9QW', 'renault_factory1@renault.com', 570);
+go
+PRINT('Test PRIMARY KEY: se espera ERROR porque codFab no puede ser nulo')
+go
+INSERT INTO Fabricantes(nomFab, dirFab, mailFab, cantEmp)
+VALUES('Renault', '7 John Knox Ln, 9QW', 'renault_factory1@renault.com', 570);
+go
+PRINT('Test UNIQUE mailFab: se espera ERROR porque se repite mailFab')
+go 
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('XA', 'Renault', '7 John Knox Ln, 9QW', 'volkswagen_factory1@volkswagen.com', 570);
+go
+PRINT('Test CHECK cantEmp > 0: se espera ERROR porque cantEmp tiene que ser mayor a cero')
+go 
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('XA', 'Renault', '7 John Knox Ln, 9QW', 'renault_factory1@renault.com', 0);
+go
+-- *****************
+-- Tabla Plantas
+-- *****************
+PRINT('Test PRIMARY KEY: se espera ERROR por repetir codFab')
 go
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('5', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
--- Test foreign key: output ERROR
-PRINT('Test FOREIGN KEY: se espera ERROR por codFab')
+go
+PRINT('Test PRIMARY KEY: se espera ERROR porque codFab no puede ser nulo')
+go
+INSERT INTO Plantas(codPlan, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('5', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
+go
+PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el codFab')
 go
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('5', 'HC', 'Campbell Motors', '38 Douglas Rd', 'camp@motors.com', '4');
+VALUES('6', 'HC', 'Campbell Motors', '38 Douglas Rd', 'camp@motors.com', '4');
 go
-PRINT('Test FOREIGN KEY: se espera ERROR por codPais')
+PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el codPais')
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('6', 'HA', 'Campbell Motors', '38 Douglas Rd', 'camp@motors.com', 'X');
 go
--- Test unique mailPlan: output ERROR
-PRINT('Test UNIQUE mailPlan: se espera ERROR')
+PRINT('Test UNIQUE mailPlan: se espera ERROR porque se repite mailPlan')
 go
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('6', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
 go
-
+-- *****************
+-- Tabla Vehiculos
+-- *****************
 
 
 
