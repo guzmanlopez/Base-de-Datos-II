@@ -340,8 +340,28 @@ VALUES('4', 'HA', 'Campbell Auto Co', '5 Secaucus Rd', 'campbell@autoco.com', '3
 go
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('5', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
-
-
+go
+-- Test primary key: output ERROR
+PRINT('Test PRIMARY KEY: se espera ERROR')
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('5', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
+-- Test foreign key: output ERROR
+PRINT('Test FOREIGN KEY: se espera ERROR por codFab')
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('5', 'HC', 'Campbell Motors', '38 Douglas Rd', 'camp@motors.com', '4');
+go
+PRINT('Test FOREIGN KEY: se espera ERROR por codPais')
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('6', 'HA', 'Campbell Motors', '38 Douglas Rd', 'camp@motors.com', 'X');
+go
+-- Test unique mailPlan: output ERROR
+PRINT('Test UNIQUE mailPlan: se espera ERROR')
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('6', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
+go
 
 
 
