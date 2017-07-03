@@ -90,3 +90,9 @@ go
 * enviados a Países diferentes a los de la fábrica
 *********************************************************************************************
 */
+
+SELECT V.codPais, COUNT(V.vin) AS Cantidad_Vehiculos
+FROM Vehiculos V, Carga C, Envios E
+WHERE C.idEnvio = E.idEnvio
+AND E.desEnvio <> V.codPais
+GROUP BY V.codPais;
