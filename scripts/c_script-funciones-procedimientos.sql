@@ -13,6 +13,16 @@ go
 * incluyendo el dígito verificador correcto.
 *********************************************************************************************
 */
+CREATE FUNCTION funct_validar_digitoverificador_vin
+(@vin character(17))
+RETURNS character(17)
+AS
+BEGIN
+DECLARE @ret character(17)
+
+
+RETURN @ret
+END;
 
 
 /*
