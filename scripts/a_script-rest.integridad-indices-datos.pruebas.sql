@@ -330,7 +330,17 @@ INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('1', 'HA', 'Campbell Auto', '2859 Dorsett Rd', 'campbell@campbell.com', 'Y');
 go
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('2', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
+VALUES('2', 'HA', 'Campbell Motors Inc', '4936 Walcott Rd', 'campbell@motorsinc.com', '1');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('3', 'HA', 'Campbell Motors Co', '6760 E Fayette St', 'campbell@motorsco.com', '2');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('4', 'HA', 'Campbell Auto Co', '5 Secaucus Rd', 'campbell@autoco.com', '3');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('5', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
+
 
 
 
