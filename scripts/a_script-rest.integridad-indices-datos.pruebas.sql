@@ -269,6 +269,68 @@ INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('XA', 'Renault', '7 John Knox Ln, 9QW', 'toyota_factory1@toyota.com', 570);
 go
 -- *** Tabla Plantas ***
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', 'AA', 'Northland Auto Supply', '2335 Canton Hwy #6 Windsor', 'northlandas@nas.com', '1');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', 'AA', 'Southland Auto Supply', '7564 N Academy Ave', 'southlandas@sas.com', '2');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('3', 'AA', 'Centerland Auto Supply', '88 E Saint Elmo Rd', 'centerlandas@cas.com', '3');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', 'BA', 'Perfection Automotive Inc', '6 Arch St #9757 Alcida', 'pai@pai.com', '1');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', 'BA', 'Luxury Automotive Inc', '75 Westchester Ave', 'luxury@luxury.com', '2');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', '4A', 'Druid Auto', '9547 Belmont Rd #21', 'druid@auto.com', '4');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', '4A', 'Arduid Auto', '1 Norris Ave #4095', 'arduid@arduid.com', '5');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', '6A', 'Automotive Consultants', '73 Pittsford Victor Rd', 'autoconsu@autoconsu.com', '4');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', '6A', 'Butomot Consultants', '5174 Interstate 45 N', 'butomotconsu@butomotconsu.com', 'J');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', 'CA', 'Kalaber Creations', '447 Commercial St Se Lile', 'kalaber@kalaber.com', 'S');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', 'CA', 'Kalaber Designs', '765 Rock Island Rd', 'kalaber@designs.com', 'W');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', 'BS', 'Tailor Made Products Inc', '47 Garfield Ave Swift', 'tailor@tailor.com', 'W');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', 'BS', 'Heador Made Products Inc', '202 Madison Ave', 'heador@heador.com', 'Y');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', 'FA', 'Valley Propane Inc', '3 Mill Rd Baker Brook', 'valleyprop@valleyprop.com', 'K');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', 'FA', 'Valley Buthane Inc', '56 Corporate Dr Becancour', 'valleybuth@valleybuth.com', '3');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', '7A', 'General White', '136 W Grand Ave #3', 'generalwhite@generalwhite.com', '1');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', '7A', 'General Black', '7 Tomahawk Dr Richmond', 'generalblack@generalblack.com', 'W');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', 'GA', 'Ep Systems', '37 Us Highway 12e', 'epsystems@epsystems.com', 'W');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', 'GA', 'Eq Systems', '1 Vernon Blvd', 'eqsystems@eqsystems.com', '2');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', 'HA', 'Campbell Auto', '2859 Dorsett Rd', 'campbell@campbell.com', 'Y');
+go
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
 
 
 
