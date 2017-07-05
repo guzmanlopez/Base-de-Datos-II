@@ -14,12 +14,13 @@ go
 *********************************************************************************************
 */
 
+-- Funciones auxiliares
 ALTER FUNCTION funct_valor_num_asociado_vin
-(@letravin character(1))
-RETURNS character(1)
+(@letravin CHARACTER(1))
+RETURNS INT
 AS
 BEGIN
-DECLARE @ret character(1)
+DECLARE @ret INT
 
 IF(@letravin = 'A') 
 	BEGIN
@@ -115,45 +116,125 @@ ELSE IF(@letravin = 'Z')
 	END
 ELSE
 	BEGIN
-	SET @ret = 0
+	SET @ret = @letravin
 	END
 
 RETURN @ret
 END;
 
-
-ALTER FUNCTION funct_validar_digitoverificador_vin
-(@vin character(17))
-RETURNS character(17)
+ALTER FUNCTION funct_factor_multiplicador_vin
+(@posicionvin INT)
+RETURNS INT
 AS
 BEGIN
-DECLARE @ret character(17)
-DECLARE @valAsociados varchar(17)
+DECLARE @ret INT
+IF(@posicionvin IN (1,11)) 
+	BEGIN
+	SET @ret = 8
+	END
+ELSE IF(@posicionvin IN (2,12)) 
+	BEGIN
+	SET @ret = 7
+	END
+ELSE IF(@posicionvin IN (3,13)) 
+	BEGIN
+	SET @ret = 6
+	END
+ELSE IF(@posicionvin IN (4,14)) 
+	BEGIN
+	SET @ret = 5
+	END
+ELSE IF(@posicionvin IN (5,15)) 
+	BEGIN
+	SET @ret = 4
+	END
+ELSE IF(@posicionvin IN (6,16)) 
+	BEGIN
+	SET @ret = 3
+	END
+ELSE IF(@posicionvin IN (7,17)) 
+	BEGIN
+	SET @ret = 2
+	END
+ELSE IF(@posicionvin = 8) 
+	BEGIN
+	SET @ret = 10
+	END
+ELSE IF(@posicionvin = 10) 
+	BEGIN
+	SET @ret = 9
+	END
+RETURN @ret
+END;
 
--- a. Encontrar el valor numérico asociado a cada letra en el VIN (las letras I, O, Q y Ñ no se permiten)
-DECLARE @ite int
+-- Función principal
+ALTER FUNCTION funct_validar_digitoverificador_vin
+(@vin CHARACTER(17))
+RETURNS CHARACTER(17)
+AS
+BEGIN
+DECLARE @ret CHARACTER(17)
+DECLARE @valAsociado INT
+DECLARE @factMultiplicador INT
+DECLARE @producto INT
+DECLARE @sumaProductos INT
+DECLARE @resto VARCHAR(2)
+DECLARE @dv CHAR(1)
+SET @sumaProductos = 0
+SET @dv = SUBSTRING(@vin,9,1)
+SET @ret = 'OK'
+
+-- Recorrer VIN 
+DECLARE @ite INT
 SET @ite = 1
 WHILE (@ite < 18)
 	BEGIN
-		IF(@ite = 1)
-			BEGIN
-			SET @valAsociados = dbo.funct_valor_num_asociado_vin(SUBSTRING(@vin,1,1))
-			END
-		IF(@ite > 1)
-			BEGIN
-			DECLARE @valNum character(1)
-			SET @valNum = dbo.funct_valor_num_asociado_vin(SUBSTRING(@vin,@ite,1))
-			SET @valAsociados = @valAsociados + @valNum
-			END
+		IF(@ite <> 9)
+		BEGIN
+		SET @valAsociado = dbo.funct_valor_num_asociado_vin(SUBSTRING(@vin,@ite,1))
+		SET @factMultiplicador = dbo.funct_factor_multiplicador_vin(@ite)
+		SET @producto = @valAsociado * @factMultiplicador
+		SET @sumaProductos = @sumaProductos + @producto
+		END
 SET @ite = @ite + 1
+	END	
+
+-- Obtener dígito verificador
+SET @resto = CAST(@sumaProductos % 11 AS VARCHAR(2))
+
+-- Test
+IF(@resto = '10' AND @dv <> 'X')
+	BEGIN
+	SET @ret = SUBSTRING(@vin,1,8) + 'X' + SUBSTRING(@vin,10,8)
 	END
-SET @ret = @valAsociados
+IF (@resto <> @dv AND @resto <> '10')
+	BEGIN
+	SET @ret = SUBSTRING(@vin,1,8) + @resto + SUBSTRING(@vin,10,8)
+	END
+
 RETURN @ret
 END;
 
+-- Tests
 
-DECLARE @output character(17)
-SET @output = dbo.funct_validar_digitoverificador_vin('ABCDEFGHJKLMNPRST');
+-- Test OK
+DECLARE @output CHARACTER(17)
+SET @output = dbo.funct_validar_digitoverificador_vin('1M8GDM9AXKP042788');
+PRINT @output
+
+-- Test corregido
+DECLARE @output CHARACTER(17)
+SET @output = dbo.funct_validar_digitoverificador_vin('1M8GDM9A1KP042788');
+PRINT @output
+
+-- Test OK
+DECLARE @output CHARACTER(17)
+SET @output = dbo.funct_validar_digitoverificador_vin('JN8DF5MV0FT250272');
+PRINT @output
+
+-- Test corregido
+DECLARE @output CHARACTER(17)
+SET @output = dbo.funct_validar_digitoverificador_vin('JN8DF5MV1FT250272');
 PRINT @output
 
 
@@ -163,6 +244,9 @@ PRINT @output
 * dicho vehículo.
 *********************************************************************************************
 */
+
+
+
 
 
 /*
