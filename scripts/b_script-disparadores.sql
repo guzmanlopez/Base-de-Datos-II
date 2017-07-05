@@ -19,18 +19,41 @@ INSTEAD OF INSERT
 AS
 BEGIN
 DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+
+SET @codPais = ''
+SET @codFab = ''
 
 SELECT @vin = dbo.funct_validar_digitoverificador_vin(I.vin) 
 FROM inserted I 
 
-IF (@vin <> 'OK')
+-- Check codPais
+SELECT @codPais = (I.codPais) 
+FROM inserted I, Paises P
+WHERE I.codPais = P.codPais 
+
+-- Check codFab
+SELECT @codFab = (I.codFab) 
+FROM inserted I, Fabricantes F
+WHERE I.codFab = F.codFab
+
+IF (@codPais = '')
+	BEGIN
+	PRINT 'No existe el [codPais] para el vehículo que se quiere ingresar' 
+	END
+ELSE IF (@codFab = '')
+	BEGIN
+	PRINT 'No existe el [codFab] para el vehículo que se quiere ingresar' 
+	END
+ELSE IF (@vin <> 'OK')
 	BEGIN
 	INSERT INTO Vehiculos
 	SELECT @vin, I.modelo, I.color, I.peso, I.caracteristicas, I.codPais, I.codFab
 	FROM INSERTED I
 	PRINT 'VEHICULO INGRESADO (VIN CORREGIDO!)'
 	END
-IF (@vin = 'OK')
+ELSE IF (@vin = 'OK')
 	BEGIN
 	INSERT INTO Vehiculos
 	SELECT I.vin, I.modelo, I.color, I.peso, I.caracteristicas, I.codPais, I.codFab
@@ -39,17 +62,25 @@ IF (@vin = 'OK')
 	END
 END
 
--- Test vin OK
+-- Test OK, vin OK
 INSERT INTO Vehiculos 
-VALUES
-	('1M8GDM9AXKP042788', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '4', 'VA')
+VALUES ('1M8GDM9AXKP042788', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1', 'HA')
 
--- Test vin CORREGIDO
+-- Test OK, vin CORREGIDO
 INSERT INTO Vehiculos 
-VALUES
-	('1M8GDM9AXKP042789', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '4', 'VA')
+VALUES ('1M8GDM9AXKP042789', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '4', 'VA')
 
+-- Test ERROR, no existe codPais
+INSERT INTO Vehiculos 
+VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', 'l', 'VA')
+
+-- Test ERROR, no existe codFab
+INSERT INTO Vehiculos 
+VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1', 'JC')
+
+-- Ver Ingresos
 SELECT * FROM Vehiculos;
+
 
 /*
 *********************************************************************************************
@@ -58,6 +89,10 @@ SELECT * FROM Vehiculos;
 * peso total del envío.
 *********************************************************************************************
 */
+
+
+
+
 
 
 /*
