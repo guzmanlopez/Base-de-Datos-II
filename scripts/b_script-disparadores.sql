@@ -102,6 +102,31 @@ SELECT * FROM Vehiculos;
 *********************************************************************************************
 */
 
+CREATE TRIGGER trigger_validar_origendestino_insert_envio
+ON Envios 
+INSTEAD OF INSERT
+AS
+BEGIN
+INSERT INTO Envios
+SELECT I.fchEnvio, I.pesoEnvio, I.oriEnvio, I.desEnvio
+FROM inserted I, inserted I2
+WHERE I.idEnvio = I2.idEnvio 
+AND I.oriEnvio <> I2.desEnvio
+END
+
+-- Test OK
+INSERT INTO Envios
+VALUES(GETDATE(),1200,1,2);
+
+-- Test no procesa línea
+INSERT INTO Envios
+VALUES(GETDATE(),1200,1,1);
+
+-- Ver tabla
+SELECT * FROM Envios;
+
+-- Eliminar todo
+DELETE FROM Envios;
 
 /*
 *********************************************************************************************
@@ -110,6 +135,7 @@ SELECT * FROM Vehiculos;
 * cuenta los borrados múltiples.
 *********************************************************************************************
 */
+
 
 
 
