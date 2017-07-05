@@ -237,7 +237,6 @@ DECLARE @output CHARACTER(17)
 SET @output = dbo.funct_validar_digitoverificador_vin('JN8DF5MV1FT250272');
 PRINT @output
 
-
 /*
 *********************************************************************************************
 * b. Crear una función que reciba como parámetro un VIN y retorne el año del modelo de
@@ -245,8 +244,149 @@ PRINT @output
 *********************************************************************************************
 */
 
+-- Se asume que los autos transportados por la empresa ROVIA INC fueron modelos de autos que se hicieron a partir del año 2010.
 
+ALTER FUNCTION funct_aniodelmodelo_vin
+(@vin CHARACTER(17))
+RETURNS INT
+AS
+BEGIN
+DECLARE @ret INT
+DECLARE @digitoAnio CHARACTER(1)
 
+SET @digitoAnio = SUBSTRING(@vin,10,1)
+
+IF(@digitoAnio = 'A')
+	BEGIN
+	SET @ret = 2010
+	END
+IF(@digitoAnio = 'B')
+	BEGIN
+	SET @ret = 2011
+	END
+IF(@digitoAnio = 'C')
+	BEGIN
+	SET @ret = 2012
+	END
+IF(@digitoAnio = 'D')
+	BEGIN
+	SET @ret = 2013
+	END
+IF(@digitoAnio = 'E')
+	BEGIN
+	SET @ret = 2014
+	END
+IF(@digitoAnio = 'F')
+	BEGIN
+	SET @ret = 2015
+	END
+IF(@digitoAnio = 'G')
+	BEGIN
+	SET @ret = 2016
+	END
+IF(@digitoAnio = 'H')
+	BEGIN
+	SET @ret = 2017
+	END
+IF(@digitoAnio = 'J')
+	BEGIN
+	SET @ret = 2018
+	END
+IF(@digitoAnio = 'K')
+	BEGIN
+	SET @ret = 2019
+	END
+IF(@digitoAnio = 'L')
+	BEGIN
+	SET @ret = 2020
+	END
+IF(@digitoAnio = 'M')
+	BEGIN
+	SET @ret = 2021
+	END
+IF(@digitoAnio = 'N')
+	BEGIN
+	SET @ret = 2022
+	END
+IF(@digitoAnio = 'P')
+	BEGIN
+	SET @ret = 2023
+	END
+IF(@digitoAnio = 'R')
+	BEGIN
+	SET @ret = 2024	
+	END
+IF(@digitoAnio = 'S')
+	BEGIN
+	SET @ret = 2025
+	END
+IF(@digitoAnio = 'T')
+	BEGIN
+	SET @ret = 2026
+	END
+IF(@digitoAnio = 'V')
+	BEGIN
+	SET @ret = 2027
+	END
+IF(@digitoAnio = 'W')
+	BEGIN
+	SET @ret = 2028
+	END
+IF(@digitoAnio = 'X')
+	BEGIN
+	SET @ret = 2029
+	END
+IF(@digitoAnio = 'Y')
+	BEGIN
+	SET @ret = 2030
+	END
+IF(@digitoAnio = '1')
+	BEGIN
+	SET @ret = 2031
+	END
+IF(@digitoAnio = '2')
+	BEGIN
+	SET @ret = 2032
+	END
+IF(@digitoAnio = '3')
+	BEGIN
+	SET @ret = 2033
+	END
+IF(@digitoAnio = '4')
+	BEGIN
+	SET @ret = 2034
+	END
+IF(@digitoAnio = '5')
+	BEGIN
+	SET @ret = 2035
+	END
+IF(@digitoAnio = '6')
+	BEGIN
+	SET @ret = 2036
+	END
+IF(@digitoAnio = '7')
+	BEGIN
+	SET @ret = 2037
+	END
+IF(@digitoAnio = '8')
+	BEGIN
+	SET @ret = 2038
+	END
+IF(@digitoAnio = '9')
+	BEGIN
+	SET @ret = 2039
+	END
+RETURN @ret
+END;
+
+-- Test 
+DECLARE @output INT
+SET @output = dbo.funct_aniodelmodelo_vin('JN8DF5MV0FT250272');
+PRINT @output
+
+DECLARE @output INT
+SET @output = dbo.funct_aniodelmodelo_vin('1M8GDM9A0GP042788');
+PRINT @output
 
 
 /*
