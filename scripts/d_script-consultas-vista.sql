@@ -3,8 +3,8 @@
 * Script con consultas y vista                                                              *
 *********************************************************************************************
 */
+
 USE BD_VEHICULOS;
-go
 
 /*
 *********************************************************************************************
@@ -12,6 +12,16 @@ go
 * de los años 2015 y 2016.
 *********************************************************************************************
 */
+
+SELECT YEAR(E.fchEnvio) AS Anio, 
+	   MAX(E.pesoEnvio) AS Mayor_peso, 
+	   MIN(E.pesoEnvio) AS Menor_peso, 
+	   MAX(E.fchEnvio) AS Mayor_fecha, 
+	   MIN(E.fchEnvio) AS Menor_fecha
+FROM Envios E
+WHERE YEAR(E.fchEnvio) = 2015 OR YEAR(E.fchEnvio) = 2016
+GROUP BY E.fchEnvio;
+
 
 /*
 *********************************************************************************************
