@@ -81,7 +81,6 @@ VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1
 -- Ver Ingresos
 SELECT * FROM Vehiculos;
 
-
 /*
 *********************************************************************************************
 * b. Crear un trigger al ingresar una línea de carga, ponga el peso correcto de acuerdo al
@@ -90,10 +89,17 @@ SELECT * FROM Vehiculos;
 *********************************************************************************************
 */
 
-
-
-
-
+ALTER TRIGGER trigger_peso_insert_carga
+ON Carga 
+INSTEAD OF INSERT
+AS
+BEGIN
+UPDATE Envios
+SET pesoEnvio = pesoEnvio + SELECT SUM(V.peso * 1.05) 
+FROM inserted I, Vehiculos V
+WHERE I.vin = V.vin
+AND I.idEnvio = I1.envio
+END
 
 /*
 *********************************************************************************************
@@ -160,10 +166,10 @@ END
 
 -- Test 
 INSERT INTO Carga
-VALUES(7, 3, '1M8GDM9A1KP042789', 2000);
+VALUES(12, 4, '1M8GDM9A1KP042789', 2000);
 
 INSERT INTO Carga
-VALUES(7, 4, '1M8GDM9AXKP042788', 4000);
+VALUES(12, 7, '1M8GDM9AXKP042788', 4000);
 
 
 -- Test OK
@@ -179,5 +185,4 @@ WHERE desEnvio = 2;
 
 -- Ver tabla
 SELECT * FROM Envios;
-
 SELECT * FROM Carga;
