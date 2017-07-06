@@ -12,74 +12,94 @@ USE BD_VEHICULOS;
 * Creación de Restricciones de Integridad
 *********************************************************************************************
 */
+
 -- Tabla Paises
 ALTER TABLE Paises
-ADD CONSTRAINT const_Paises_pk_codPais PRIMARY KEY(codPais);
+ADD CONSTRAINT const_Paises_pk_codPais 
+PRIMARY KEY(codPais);
 
 ALTER TABLE Paises
-ADD CONSTRAINT const_Paises_uniq_nomPais UNIQUE(nomPais);
+ADD CONSTRAINT const_Paises_uniq_nomPais 
+UNIQUE(nomPais);
 
 -- Tabla Fabricantes
 ALTER TABLE Fabricantes
-ADD CONSTRAINT const_Fabricantes_pk_codFab PRIMARY KEY(codFab);
+ADD CONSTRAINT const_Fabricantes_pk_codFab 
+PRIMARY KEY(codFab);
 
 ALTER TABLE Fabricantes
-ADD CONSTRAINT const_Fabricantes_uniq_mailFab UNIQUE(mailFab);
+ADD CONSTRAINT const_Fabricantes_uniq_mailFab 
+UNIQUE(mailFab);
 
 ALTER TABLE Fabricantes
 ADD cantEmp INT NOT NULL;
 
 ALTER TABLE Fabricantes
-ADD CONSTRAINT const_Fabricantes_chk_cantEmp CHECK (cantEmp > 0);
+ADD CONSTRAINT const_Fabricantes_chk_cantEmp 
+CHECK (cantEmp > 0);
 
 -- Tabla Plantas
 ALTER TABLE Plantas
-ADD CONSTRAINT const_Plantas_pk_codPlan_codFab PRIMARY KEY(codPlan, codFab);
+ADD CONSTRAINT const_Plantas_pk_codPlan_codFab 
+PRIMARY KEY(codPlan, codFab);
 
 ALTER TABLE Plantas
-ADD CONSTRAINT const_Plantas_fk_codFab FOREIGN KEY(codFab) REFERENCES Fabricantes(codFab);
+ADD CONSTRAINT const_Plantas_fk_codFab 
+FOREIGN KEY(codFab) REFERENCES Fabricantes(codFab);
 
 ALTER TABLE Plantas
-ADD CONSTRAINT const_Plantas_fk_codPais FOREIGN KEY(codPais) REFERENCES Paises(codPais);
+ADD CONSTRAINT const_Plantas_fk_codPais 
+FOREIGN KEY(codPais) REFERENCES Paises(codPais);
 
 ALTER TABLE Plantas
-ADD CONSTRAINT const_Plantas_uniq_mailPlan UNIQUE(mailPlan);
+ADD CONSTRAINT const_Plantas_uniq_mailPlan 
+UNIQUE(mailPlan);
 
 -- Tabla Vehiculos
 ALTER TABLE Vehiculos
-ADD CONSTRAINT const_Vehiculos_pk_vin PRIMARY KEY(vin);
+ADD CONSTRAINT const_Vehiculos_pk_vin 
+PRIMARY KEY(vin);
 
 ALTER TABLE Vehiculos
-ADD CONSTRAINT const_Vehiculos_fk_codPais FOREIGN KEY(codPais) REFERENCES Paises(codPais);
+ADD CONSTRAINT const_Vehiculos_fk_codPais 
+FOREIGN KEY(codPais) REFERENCES Paises(codPais);
 
 ALTER TABLE Vehiculos
-ADD CONSTRAINT const_Vehiculos_fk_codFab FOREIGN KEY(codFab) REFERENCES Fabricantes(codFab);
+ADD CONSTRAINT const_Vehiculos_fk_codFab
+FOREIGN KEY(codFab) REFERENCES Fabricantes(codFab);
 
 -- Tabla Envios
 ALTER TABLE Envios
-ADD CONSTRAINT const_Envios_pk_idEnvio PRIMARY KEY(idEnvio);
+ADD CONSTRAINT const_Envios_pk_idEnvio 
+PRIMARY KEY(idEnvio);
 
 ALTER TABLE Envios
-ADD CONSTRAINT const_Envios_fk_oriEnvio FOREIGN KEY(oriEnvio) REFERENCES Paises(codPais);
+ADD CONSTRAINT const_Envios_fk_oriEnvio 
+FOREIGN KEY(oriEnvio) REFERENCES Paises(codPais);
 
 ALTER TABLE Envios
-ADD CONSTRAINT const_Envios_fk_desEnvio FOREIGN KEY(desEnvio) REFERENCES Paises(codPais);
+ADD CONSTRAINT const_Envios_fk_desEnvio 
+FOREIGN KEY(desEnvio) REFERENCES Paises(codPais);
 
 -- Tabla Carga
 ALTER TABLE Carga
-ADD CONSTRAINT const_Carga_pk_idEnvio_idCarga PRIMARY KEY(idEnvio, idCarga);
+ADD CONSTRAINT const_Carga_pk_idEnvio_idCarga 
+PRIMARY KEY(idEnvio, idCarga);
 
 ALTER TABLE Carga
-ADD CONSTRAINT const_Carga_fk_idEnvio FOREIGN KEY(idEnvio) REFERENCES Envios(idEnvio);
+ADD CONSTRAINT const_Carga_fk_idEnvio 
+FOREIGN KEY(idEnvio) REFERENCES Envios(idEnvio);
 
 ALTER TABLE Carga
-ADD CONSTRAINT const_Carga_fk_vin FOREIGN KEY(vin) REFERENCES Vehiculos(vin);
+ADD CONSTRAINT const_Carga_fk_vin 
+FOREIGN KEY(vin) REFERENCES Vehiculos(vin);
 
 /*
 *********************************************************************************************
 * Creación de Índices
 *********************************************************************************************
 */
+
 -- Tabla Plantas
 CREATE INDEX idx_Plantas_codFab
 ON Plantas(codFab); 
@@ -110,9 +130,11 @@ ON Carga(vin);
 * Ingreso de datos de prueba: OK
 *********************************************************************************************
 */
+
 -- *****************
 -- Tabla Paises 
 -- *****************
+
 INSERT INTO Paises(codPais, nomPais)
 VALUES('1', 'Estados Unidos');
 
@@ -161,29 +183,39 @@ VALUES('Z', 'Italia');
 -- *****************
 -- Tabla Fabricantes
 -- *****************
+
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('AA', 'Audi', '12 The Horseshoes, Norton, Bury Saint Edmunds IP31 3NR', 'audi_factory1@audi.com', 120);
+VALUES('AA', 'Audi', '12 The Horseshoes, Norton, Bury Saint Edmunds IP31', 'audi_factory1@audi.com', 120);
+
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('AB', 'Audi', '14 The Horseshoes, Norton, Bury Saint Edmunds IP31', 'audi_factory2@audi.com', 120);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('BA', 'Bmw', '7 Copley St, Batley WF17 8JA', 'bmw_factory1@bmw.com', 100);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('4A', 'Buick', '13 Beckett Cl, London SW16 1AN', 'buick_factory1@buick.com', 80);
-
-INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('6A', 'Cadillac', '145 Sandringham Rd, Cleeth 9BP', 'cadillac_factory1@cadillac.com', 60);
+VALUES('BS', 'Bmw', '8 Copley St, Batley WF17 8JA', 'bmw_factory2@bmw.com', 100);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('CA', 'Chrysler', '36 Trewsbury Rd, 5DN', 'chrysler_factory1@chrysler.com', 140);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('BS', 'Dodge', '3 Lon Ger-Y-Coed, Ammanford 18', 'dodge_factory1@dodge.com', 80);
+VALUES('CB', 'Chrysler', '38 Trewsbury Rd, 5DN', 'chrysler_factory2@chrysler.com', 140);
+
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('DA', 'Mercedes Benz', '44 Jean Armour Dr, 2SD', 'mercedesbenz_factory1@mercedesbenz.com', 570);
+
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('DB', 'Mercedes Benz', '46 Jean Armour Dr, 2SD', 'mercedesbenz_factory2@mercedesbenz.com', 570);
+
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('EA', 'Dodge', '4 Lon Ger-Y-Coed, Ammanford 18', 'dodge_factory1@dodge.com', 80);
+
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('ES', 'Dodge', '3 Lon Ger-Y-Coed, Ammanford 18', 'dodge_factory2@dodge.com', 80);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('FA', 'Ford', '2 Boston End, Thetford IP24', 'ford_factory1@ford.com', 160);
-
-INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('7A', 'GM Canada', '40 Springfield Rd, 3DU', 'gmcanada_factory1@gm.com', 250);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('GA', 'GM', '1-4 Smithy Row, NG1', 'gm_factory1@gm.com', 450);
@@ -192,13 +224,10 @@ INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('HA', 'Honda', '26A Station St, 5HJ', 'honda_factory1@honda.com', 320);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('AS', 'Jaguar', '15 Sutton Ave, 3JY', 'jaguar_factory1@jaguar.com', 620);
+VALUES('JS', 'Jaguar', '15 Sutton Ave, 3JY', 'jaguar_factory1@jaguar.com', 620);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('LA', 'Lincon', '9-15 Queen St, Cardiff CF10', 'lincon_factory1@lincon.com', 220);
-
-INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('DA', 'Mercedes Benz', '44 Jean Armour Dr, 2SD', 'mercedesbenz_factory1@mercedesbenz.com', 570);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('MA', 'Mercury', '375 Lonsdale Rd, 9PY', 'mercury_factory1@mercury.com', 460);
@@ -207,19 +236,13 @@ INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('NA', 'Nissan', 'Saltcoats, 1YZ', 'nissan_factory1@nissan.com', 340);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('3A', 'Oldsmobile', '38 Queens Rd, 2ET', 'oldsmobile_factory1@oldsmobile.com', 440);
-
-INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('2A', 'Pontiac', '9 Kingsgate St, 9PD', 'pontiac_factory1@pontiac.com', 250);
-
-INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('PA', 'Plymounth', '21 Station Rd Blvd, 5SN', 'plymounth_factory1@plymounth.com', 380);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('SA', 'Saab', 'A9, Bridge of Allan, FK9', 'saab_factory1@saab.com', 180);
+VALUES('RA', 'Renault', '16 Station Rd Blvd, 60N', 'renault_factory1@renault.com', 280);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('8A', 'Saturn', '42 Church St, 7AS', 'saturn_factory1@saturn.com', 190);
+VALUES('SA', 'Saab', 'A9, Bridge of Allan, FK9', 'saab_factory1@saab.com', 180);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('TA', 'Toyota', '12 Tayside Dr, Edgward 8RD', 'toyota_factory1@toyota.com', 240);
@@ -227,9 +250,29 @@ VALUES('TA', 'Toyota', '12 Tayside Dr, Edgward 8RD', 'toyota_factory1@toyota.com
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('VA', 'Volkswagen', '21 Lon Tyr Haul, 9SF', 'volkswagen_factory1@volkswagen.com', 570);
 
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('2A', 'Pontiac', '9 Kingsgate St, 9PD', 'pontiac_factory1@pontiac.com', 250);
+
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('3A', 'Oldsmobile', '38 Queens Rd, 2ET', 'oldsmobile_factory1@oldsmobile.com', 440);
+
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('4A', 'Buick', '13 Beckett Cl, London SW16 1AN', 'buick_factory1@buick.com', 80);
+
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('6A', 'Cadillac', '145 Sandringham Rd, Cleeth 9BP', 'cadillac_factory1@cadillac.com', 60);
+
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('7A', 'GM Canada', '40 Springfield Rd, 3DU', 'gmcanada_factory1@gm.com', 250);
+
+INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
+VALUES('8A', 'Saturn', '42 Church St, 7AS', 'saturn_factory1@saturn.com', 190);
+
+
 -- *****************
 -- Tabla Plantas
 -- *****************
+
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('1', 'AA', 'Northland Auto Supply', '2335 Canton Hwy #6 Windsor', 'northlandas@nas.com', '1');
 
@@ -240,16 +283,25 @@ INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('3', 'AA', 'Centerland Auto Supply', '88 E Saint Elmo Rd', 'centerlandas@cas.com', '3');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('4', 'AB', 'Centerland Motor Supply', 'Saint Elmo Rd', 'centerlandmotor@cms.com', '4');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('1', 'BA', 'Perfection Automotive Inc', '6 Arch St #9757 Alcida', 'pai@pai.com', '1');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('2', 'BA', 'Luxury Automotive Inc', '75 Westchester Ave', 'luxury@luxury.com', '2');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('3', 'BS', 'Luxury Automotive Inc', '80 Westchester Ave', 'luxuryb@luxury.com', 'Z');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('1', '4A', 'Druid Auto', '9547 Belmont Rd #21', 'druid@auto.com', '4');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('2', '4A', 'Arduid Auto', '1 Norris Ave #4095', 'arduid@arduid.com', '5');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('3', '4A', 'Ar Auto', '3 Norris Ave #4095', 'arduid2@arduid.com', 'Z');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('1', '6A', 'Automotive Consultants', '73 Pittsford Victor Rd', 'autoconsu@autoconsu.com', '4');
@@ -262,6 +314,9 @@ VALUES('1', 'CA', 'Kalaber Creations', '447 Commercial St Se Lile', 'kalaber@kal
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('2', 'CA', 'Kalaber Designs', '765 Rock Island Rd', 'kalaber@designs.com', 'W');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('3', 'CA', 'Kalaber Designs B', '8 Rock Island Rd', 'kalaber2@designs.com', 'J');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('1', 'BS', 'Tailor Made Products Inc', '47 Garfield Ave Swift', 'tailor@tailor.com', 'W');
@@ -389,7 +444,6 @@ VALUES('6', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4'
 -- *****************
 -- Tabla Vehiculos
 -- *****************
-
 
 
 
