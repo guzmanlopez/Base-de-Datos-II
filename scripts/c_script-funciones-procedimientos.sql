@@ -3,8 +3,9 @@
 * Script con funciones y procedimientos                                                     *
 *********************************************************************************************
 */
+
 USE BD_VEHICULOS;
-go
+
 /*
 *********************************************************************************************
 * a. Crear una función almacenada que reciba como parámetro un número de VIN
@@ -229,7 +230,9 @@ PRINT @output
 
 -- Test OK
 DECLARE @output CHARACTER(17)
-SET @output = dbo.funct_validar_digitoverificador_vin('JN8DF5MV0FT250272');
+DECLARE @vin CHARACTER(17)
+SET @vin = 'JN8DF5MV0FT250272'
+SET @output = dbo.funct_validar_digitoverificador_vin(@vin);
 PRINT @output
 
 -- Test corregido
@@ -395,6 +398,10 @@ PRINT @output
 * más vehículos recibió en dicho rango.
 *********************************************************************************************
 */
+
+
+
+
 
 
 /*
