@@ -31,7 +31,8 @@ GROUP BY E.fchEnvio;
 *********************************************************************************************
 */
 
-SELECT F.nomFab AS Nombre,
+SELECT F.codFab AS Codigo_Fabricante,
+	   F.nomFab AS Nombre_Fabricante,
        COUNT(V.vin) AS Cant_vehiculos_env,
 	   SUM(V.peso) AS Peso
 FROM Fabricantes F, Vehiculos V, Carga C, Envios E
@@ -39,8 +40,8 @@ WHERE F.codFab = V.codFab
 AND V.vin = C.vin
 AND C.idEnvio = E.idEnvio
 AND YEAR(E.fchEnvio) = 2016
-GROUP BY F.nomFab, V.vin
-ORDER BY Peso DESC
+GROUP BY F.codFab, F.nomFab, V.vin
+ORDER BY Peso DESC;
 
 
 /*
@@ -112,7 +113,8 @@ ORDER BY Peso DESC
 *********************************************************************************************
 */
 
-SELECT V.codPais, COUNT(V.vin) AS Cantidad_Vehiculos
+SELECT V.codPais AS Codigo_Pais, 
+	   COUNT(V.vin) AS Cantidad_Vehiculos
 FROM Vehiculos V, Carga C, Envios E
 WHERE C.idEnvio = E.idEnvio
 AND E.desEnvio <> V.codPais
