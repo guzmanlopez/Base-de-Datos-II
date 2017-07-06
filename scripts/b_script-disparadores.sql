@@ -118,6 +118,12 @@ END
 INSERT INTO Envios
 VALUES(GETDATE(),1200,1,2);
 
+INSERT INTO Envios
+VALUES(GETDATE(),1300,1,3);
+
+INSERT INTO Envios
+VALUES(GETDATE(),2300,2,3);
+
 -- Test no procesa línea
 INSERT INTO Envios
 VALUES(GETDATE(),1200,1,1);
@@ -136,9 +142,42 @@ DELETE FROM Envios;
 *********************************************************************************************
 */
 
+ALTER TRIGGER trigger_delete_envio
+ON Envios 
+INSTEAD OF DELETE
+AS
+BEGIN
+
+-- Borrar de tabla Carga
+DELETE FROM Carga
+WHERE idEnvio IN (SELECT D.idEnvio FROM deleted D)
+
+-- Borrar de tabla Envio
+DELETE FROM Envios
+WHERE idEnvio IN (SELECT D2.idEnvio FROM deleted D2)
+
+END
+
+-- Test 
+INSERT INTO Carga
+VALUES(7, 3, '1M8GDM9A1KP042789', 2000);
+
+INSERT INTO Carga
+VALUES(7, 4, '1M8GDM9AXKP042788', 4000);
 
 
+-- Test OK
+DELETE FROM Envios
+WHERE idEnvio = 5;
 
+DELETE FROM Envios
+WHERE idEnvio = 6;
 
+-- Múltiple
+DELETE FROM Envios
+WHERE desEnvio = 2;
 
+-- Ver tabla
+SELECT * FROM Envios;
 
+SELECT * FROM Carga;
