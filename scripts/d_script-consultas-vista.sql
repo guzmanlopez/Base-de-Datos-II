@@ -20,7 +20,7 @@ SELECT YEAR(E.fchEnvio) AS Anio,
 	   MIN(E.fchEnvio) AS Menor_fecha
 FROM Envios E
 WHERE YEAR(E.fchEnvio) = 2015 OR YEAR(E.fchEnvio) = 2016
-GROUP BY E.fchEnvio;
+GROUP BY YEAR(E.fchEnvio);
 
 
 /*
