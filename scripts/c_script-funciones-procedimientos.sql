@@ -119,7 +119,6 @@ ELSE
 	BEGIN
 	SET @ret = @letravin
 	END
-
 RETURN @ret
 END;
 
@@ -212,7 +211,6 @@ IF (@resto <> @dv AND @resto <> '10')
 	BEGIN
 	SET @ret = SUBSTRING(@vin,1,8) + @resto + SUBSTRING(@vin,10,8)
 	END
-
 RETURN @ret
 END;
 
@@ -249,7 +247,7 @@ PRINT @output
 
 -- Se asume que los autos transportados por la empresa ROVIA INC fueron modelos de autos que se hicieron a partir del año 2010.
 
-ALTER FUNCTION funct_aniodelmodelo_vin
+CREATE FUNCTION funct_aniodelmodelo_vin
 (@vin CHARACTER(17))
 RETURNS INT
 AS

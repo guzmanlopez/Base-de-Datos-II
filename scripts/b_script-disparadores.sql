@@ -13,7 +13,7 @@ USE BD_VEHICULOS;
 *********************************************************************************************
 */
 
-ALTER TRIGGER trigger_validar_vin_insert_vehiculo
+CREATE TRIGGER trigger_validar_vin_insert_vehiculo
 ON Vehiculos 
 INSTEAD OF INSERT
 AS

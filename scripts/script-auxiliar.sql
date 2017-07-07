@@ -10,7 +10,7 @@
 *********************************************************************************************
 */
 
-CREATE FUNCTION funct_aux_nombre_codPais
+ALTER FUNCTION funct_aux_nombre_codPais
 (@nombre VARCHAR(30))
 RETURNS CHARACTER(1)
 BEGIN
@@ -19,62 +19,59 @@ IF(@nombre = 'Estados Unidos')
 	BEGIN
 	SET @ret = '1'
 	END
-IF(@nombre = 'Canadá')
+ELSE IF(@nombre = 'Canadá')
 	BEGIN
 	SET @ret = '2'
 	END
-IF(@nombre = 'México')
+ELSE IF(@nombre = 'México')
 	BEGIN
 	SET @ret = '3'
 	END
-IF(@nombre = 'Argentina')
+ELSE IF(@nombre = 'Argentina')
 	BEGIN
 	SET @ret = '4'
 	END
-IF(@nombre = 'Chile')
+ELSE IF(@nombre = 'Chile')
 	BEGIN
 	SET @ret = '5'
 	END
-IF(@nombre = 'Panamá')
+ELSE IF(@nombre = 'Uruguay')
 	BEGIN
 	SET @ret = '6'
 	END
-IF(@nombre = 'Pakistán')
-	BEGIN
-	SET @ret = '7'
-	END
-IF(@nombre = 'España')
-	BEGIN
-	SET @ret = '8'
-	END
-IF(@nombre = 'Brasil')
+ELSE IF(@nombre = 'Brasil')
 	BEGIN
 	SET @ret = '9'
 	END
-IF(@nombre = 'Japón')
+ELSE IF(@nombre = 'Japón')
 	BEGIN
 	SET @ret = 'J'
 	END
-IF(@nombre = 'Korea')
+ELSE IF(@nombre = 'Korea')
 	BEGIN
 	SET @ret = 'K'
 	END
-IF(@nombre = 'Inglaterra')
+ELSE IF(@nombre = 'Inglaterra')
 	BEGIN
 	SET @ret = 'S'
 	END
-IF(@nombre = 'Alemania')
+ELSE IF(@nombre = 'Alemania')
 	BEGIN
 	SET @ret = 'W'
 	END
-IF(@nombre = 'Suecia')
+ELSE IF(@nombre = 'Suecia')
 	BEGIN
 	SET @ret = 'Y'
 	END
-IF(@nombre = 'Italia')
+ELSE IF(@nombre = 'Italia')
 	BEGIN
 	SET @ret = 'Z'
 	END
+ELSE
+	BEGIN
+	SET @ret = '-'
+	END
+
 RETURN @ret
 END;
 
