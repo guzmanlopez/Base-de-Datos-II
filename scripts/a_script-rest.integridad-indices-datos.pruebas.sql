@@ -732,7 +732,26 @@ INSERT INTO Carga(idEnvio, idCarga, vin)
 VALUES(1, 2, '1AAAL3201GAA1019')
 
 INSERT INTO Carga(idEnvio, idCarga, vin)
-VALUES(1, 3, '1BAFE3150FBA1019')
+VALUES(1, 3, '1AAAL3201GAA1019')
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 4, '1BAFE3150FBA1019')
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 5, '1BAFE3150FBA1019')
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 6, 'JDAAL3200HDA1019')
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 7, 'JDAAL3200HDA1019')
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 8, 'JDAAL3200HDA1019')
+ 
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 9, 'WCAFE3207FCA1019 ')
+
 
 SELECT * FROM Vehiculos;
 

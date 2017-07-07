@@ -85,7 +85,7 @@ SET @output = dbo.funct_aux_nombre_codPais('Alemania')
 PRINT @output
 
 DECLARE @output CHARACTER(1)
-SET @output = dbo.funct_aux_nombre_codPais('Brasil')
+SET @output = dbo.funct_aux_nombre_codPais('Panamá')
 PRINT @output
 
 /*
