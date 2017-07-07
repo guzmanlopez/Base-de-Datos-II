@@ -40,7 +40,7 @@ WHERE F.codFab = V.codFab
 AND V.vin = C.vin
 AND C.idEnvio = E.idEnvio
 AND YEAR(E.fchEnvio) = 2016
-GROUP BY F.codFab, F.nomFab, V.vin
+GROUP BY F.codFab, F.nomFab
 ORDER BY Peso DESC;
 
 
@@ -113,9 +113,15 @@ ORDER BY Peso DESC;
 *********************************************************************************************
 */
 
-SELECT V.codPais AS Codigo_Pais, 
-	   COUNT(V.vin) AS Cantidad_Vehiculos
-FROM Vehiculos V, Carga C, Envios E
+ALTER VIEW vista_codPais_cantVehiculos AS
+SELECT P.nomPais AS País_de_fabricación, 
+	   COUNT(DISTINCT(V.vin)) AS Cantidad_vehiculos_enviados
+FROM Vehiculos V, Carga C, Envios E, Paises P
 WHERE C.idEnvio = E.idEnvio
 AND E.desEnvio <> V.codPais
-GROUP BY V.codPais;
+AND V.codPais = P.codPais
+GROUP BY P.nomPais;
+
+-- Test
+SELECT * FROM vista_codPais_cantVehiculos
+ORDER BY Cantidad_vehiculos_enviados DESC;

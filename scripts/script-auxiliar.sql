@@ -6,11 +6,95 @@
 
 /*
 *********************************************************************************************
+* Dado un nombre de país retornar su código
+*********************************************************************************************
+*/
+
+CREATE FUNCTION funct_aux_nombre_codPais
+(@nombre VARCHAR(30))
+RETURNS CHARACTER(1)
+BEGIN
+DECLARE @ret CHARACTER(1)
+IF(@nombre = 'Estados Unidos')
+	BEGIN
+	SET @ret = '1'
+	END
+IF(@nombre = 'Canadá')
+	BEGIN
+	SET @ret = '2'
+	END
+IF(@nombre = 'México')
+	BEGIN
+	SET @ret = '3'
+	END
+IF(@nombre = 'Argentina')
+	BEGIN
+	SET @ret = '4'
+	END
+IF(@nombre = 'Chile')
+	BEGIN
+	SET @ret = '5'
+	END
+IF(@nombre = 'Panamá')
+	BEGIN
+	SET @ret = '6'
+	END
+IF(@nombre = 'Pakistán')
+	BEGIN
+	SET @ret = '7'
+	END
+IF(@nombre = 'España')
+	BEGIN
+	SET @ret = '8'
+	END
+IF(@nombre = 'Brasil')
+	BEGIN
+	SET @ret = '9'
+	END
+IF(@nombre = 'Japón')
+	BEGIN
+	SET @ret = 'J'
+	END
+IF(@nombre = 'Korea')
+	BEGIN
+	SET @ret = 'K'
+	END
+IF(@nombre = 'Inglaterra')
+	BEGIN
+	SET @ret = 'S'
+	END
+IF(@nombre = 'Alemania')
+	BEGIN
+	SET @ret = 'W'
+	END
+IF(@nombre = 'Suecia')
+	BEGIN
+	SET @ret = 'Y'
+	END
+IF(@nombre = 'Italia')
+	BEGIN
+	SET @ret = 'Z'
+	END
+RETURN @ret
+END;
+
+
+-- Test
+DECLARE @output CHARACTER(1)
+SET @output = dbo.funct_aux_nombre_codPais('Alemania')
+PRINT @output
+
+DECLARE @output CHARACTER(1)
+SET @output = dbo.funct_aux_nombre_codPais('Brasil')
+PRINT @output
+
+/*
+*********************************************************************************************
 * Dado un código de fabricante retornar su nombre
 *********************************************************************************************
 */
 
-ALTER FUNCTION funct_aux_codFab_nombre
+CREATE FUNCTION funct_aux_codFab_nombre
 (@codFab CHARACTER(2))
 RETURNS VARCHAR(30)
 BEGIN
@@ -130,7 +214,7 @@ PRINT @output
 *********************************************************************************************
 */
 
-ALTER FUNCTION funct_aux_nombre_codFab
+CREATE FUNCTION funct_aux_nombre_codFab
 (@nomFab VARCHAR(30))
 RETURNS CHARACTER(1)
 BEGIN
@@ -246,7 +330,7 @@ PRINT @output
 *********************************************************************************************
 */
 
-ALTER FUNCTION funct_anio_cod
+CREATE FUNCTION funct_anio_cod
 (@anio INT)
 RETURNS CHAR(1)
 AS
@@ -394,7 +478,7 @@ PRINT @output
 -- Funciones auxiliares a la función crear VIN
 
 -- Crear WMI
-ALTER FUNCTION funct_aux_crear_WMI
+CREATE FUNCTION funct_aux_crear_WMI
 (@codPais CHARACTER(1), @codFab CHARACTER(2))
 RETURNS CHARACTER(3)
 BEGIN
@@ -409,7 +493,7 @@ SET @output = dbo.funct_aux_crear_WMI('1','AA')
 PRINT @output
 
 -- Crear VDS
-ALTER FUNCTION funct_aux_crear_VDS
+CREATE FUNCTION funct_aux_crear_VDS
 (@tipoChasis VARCHAR(30), @modeloMotor VARCHAR(30))
 RETURNS CHARACTER(6)
 BEGIN

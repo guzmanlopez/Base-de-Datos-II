@@ -16,7 +16,7 @@ USE BD_VEHICULOS;
 */
 
 -- Funciones auxiliares
-ALTER FUNCTION funct_valor_num_asociado_vin
+CREATE FUNCTION funct_valor_num_asociado_vin
 (@letravin CHARACTER(1))
 RETURNS INT
 AS
@@ -123,7 +123,7 @@ ELSE
 RETURN @ret
 END;
 
-ALTER FUNCTION funct_factor_multiplicador_vin
+CREATE FUNCTION funct_factor_multiplicador_vin
 (@posicionvin INT)
 RETURNS INT
 AS
@@ -169,7 +169,7 @@ RETURN @ret
 END;
 
 -- Función principal
-ALTER FUNCTION funct_validar_digitoverificador_vin
+CREATE FUNCTION funct_validar_digitoverificador_vin
 (@vin CHARACTER(17))
 RETURNS CHARACTER(17)
 AS
