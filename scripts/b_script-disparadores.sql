@@ -21,9 +21,11 @@ BEGIN
 DECLARE @vin CHARACTER(17)
 DECLARE @codPais CHARACTER(1)
 DECLARE @codFab CHARACTER(2)
+DECLARE @codFabPais CHARACTER(2)
 
 SET @codPais = ''
 SET @codFab = ''
+SET @codFabPais = ''
 
 SELECT @vin = dbo.funct_validar_digitoverificador_vin(I.vin) 
 FROM inserted I 
@@ -38,6 +40,12 @@ SELECT @codFab = (I.codFab)
 FROM inserted I, Fabricantes F
 WHERE I.codFab = F.codFab
 
+-- Check codPais y codFab
+SELECT @codFabPais = (I.codFab) 
+FROM inserted I, Plantas P
+WHERE I.codFab = P.codFab
+AND I.codPais = P.codPais
+
 IF (@codPais = '')
 	BEGIN
 	PRINT 'No existe el [codPais] para el vehículo que se quiere ingresar' 
@@ -45,6 +53,10 @@ IF (@codPais = '')
 ELSE IF (@codFab = '')
 	BEGIN
 	PRINT 'No existe el [codFab] para el vehículo que se quiere ingresar' 
+	END
+ELSE IF (@codFabPais = '')
+	BEGIN
+	PRINT 'No existe la planta para el vehículo que se quiere ingresar' 
 	END
 ELSE IF (@vin <> 'OK')
 	BEGIN
@@ -63,23 +75,29 @@ ELSE IF (@vin = 'OK')
 END
 
 -- Test OK, vin OK
-INSERT INTO Vehiculos 
-VALUES ('1M8GDM9AXKP042788', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1', 'HA')
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('1M8GDM9AXKP042788', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1', 'RA')
 
 -- Test OK, vin CORREGIDO
-INSERT INTO Vehiculos 
-VALUES ('1M8GDM9AXKP042789', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '4', 'VA')
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
+VALUES ('1M8GDM9AXKP042789', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1', 'RA')
 
 -- Test ERROR, no existe codPais
-INSERT INTO Vehiculos 
-VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', 'l', 'VA')
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
+VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', 'O', 'RA')
 
 -- Test ERROR, no existe codFab
-INSERT INTO Vehiculos 
-VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1', 'JC')
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
+VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1', 'RS')
+
+-- Test ERROR, no existe la planta 
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
+VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '2', 'RA')
 
 -- Ver Ingresos
 SELECT * FROM Vehiculos;
+
+DELETE FROM Vehiculos;
 
 /*
 *********************************************************************************************
@@ -89,17 +107,37 @@ SELECT * FROM Vehiculos;
 *********************************************************************************************
 */
 
-ALTER TRIGGER trigger_peso_insert_carga
+CREATE TRIGGER trigger_peso_insert_carga
 ON Carga 
 INSTEAD OF INSERT
 AS
 BEGIN
 UPDATE Envios
-SET pesoEnvio = pesoEnvio + SELECT SUM(V.peso * 1.05) 
-FROM inserted I, Vehiculos V
-WHERE I.vin = V.vin
-AND I.idEnvio = I1.envio
-END
+SET pesoEnvio = pesoEnvio + (SELECT SUM(V.peso * 1.05)
+							FROM inserted I, Vehiculos V, Envios E
+							WHERE I.vin = V.vin
+							AND I.idEnvio = E.idEnvio)
+FROM inserted I2, Envios E2
+WHERE E2.idEnvio = I2.idEnvio;
+
+INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
+SELECT I3.idEnvio, I3.idCarga, I3.vin, (SELECT SUM(V2.peso * 1.05)
+							FROM inserted I3, Vehiculos V2
+							WHERE I3.vin = V2.vin)
+FROM inserted I3, Vehiculos V2
+WHERE I3.vin = V2.vin
+END;
+
+-- Test OK
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 1, '1AAAL3201GAA1019')
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 2, '1AAAL3202AAA1019')
+
+SELECT * FROM Vehiculos;
+SELECT * FROM Carga;
+SELECT * FROM Envios; --4575
 
 /*
 *********************************************************************************************
@@ -148,29 +186,26 @@ DELETE FROM Envios;
 *********************************************************************************************
 */
 
-ALTER TRIGGER trigger_delete_envio
+CREATE TRIGGER trigger_delete_envio
 ON Envios 
 INSTEAD OF DELETE
 AS
 BEGIN
-
 -- Borrar de tabla Carga
 DELETE FROM Carga
 WHERE idEnvio IN (SELECT D.idEnvio FROM deleted D)
-
 -- Borrar de tabla Envio
 DELETE FROM Envios
 WHERE idEnvio IN (SELECT D2.idEnvio FROM deleted D2)
+END;
 
-END
 
 -- Test 
 INSERT INTO Carga
-VALUES(12, 4, '1M8GDM9A1KP042789', 2000);
+VALUES(12, 4, '1AAAL3201GAA1019 ', 2000);
 
 INSERT INTO Carga
-VALUES(12, 7, '1M8GDM9AXKP042788', 4000);
-
+VALUES(12, 7, '1AAAL3202AAA1019 ', 4000);
 
 -- Test OK
 DELETE FROM Envios
