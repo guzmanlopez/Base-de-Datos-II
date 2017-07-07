@@ -31,8 +31,21 @@ GROUP BY YEAR(E.fchEnvio);
 *********************************************************************************************
 */
 
--- Se devuelve la suma del peso de los vehiculos (no incluye el peso de accesorios y combustibles)
+-- Se devuelve la suma del peso de los vehiculos (incluye el peso de accesorios y combustible)
+-- Se devuelve para cada nombre de fabricante no distinguiendo por su división de fábrica
 
+SELECT F.nomFab AS Nombre_Fabricante,
+       COUNT(V.vin) AS Cant_vehiculos_env,
+	   SUM(V.peso*1.05) AS Peso
+FROM Fabricantes F, Vehiculos V, Carga C, Envios E
+WHERE F.codFab = V.codFab
+AND V.vin = C.vin
+AND C.idEnvio = E.idEnvio
+AND YEAR(E.fchEnvio) = 2016
+GROUP BY F.nomFab
+ORDER BY Peso DESC;
+
+/*
 SELECT F.codFab AS Codigo_Fabricante,
 	   F.nomFab AS Nombre_Fabricante,
        COUNT(V.vin) AS Cant_vehiculos_env,
@@ -44,6 +57,8 @@ AND C.idEnvio = E.idEnvio
 AND YEAR(E.fchEnvio) = 2016
 GROUP BY F.codFab, F.nomFab
 ORDER BY Peso DESC;
+*/
+
 
 
 /*
