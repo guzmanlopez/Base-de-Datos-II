@@ -31,6 +31,8 @@ GROUP BY YEAR(E.fchEnvio);
 *********************************************************************************************
 */
 
+-- Se devuelve la suma del peso de los vehiculos (no incluye el peso de accesorios y combustibles)
+
 SELECT F.codFab AS Codigo_Fabricante,
 	   F.nomFab AS Nombre_Fabricante,
        COUNT(V.vin) AS Cant_vehiculos_env,

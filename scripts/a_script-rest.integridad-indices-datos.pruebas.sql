@@ -665,6 +665,76 @@ SET @destino = dbo.funct_aux_nombre_codPais('Panamá')
 INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
 VALUES ('20170115', 2500, @origen, @destino)
 
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @destino = dbo.funct_aux_nombre_codPais('Panamá')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20150115', 2500, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @destino = dbo.funct_aux_nombre_codPais('Argentina')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20170215', 2500, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @destino = dbo.funct_aux_nombre_codPais('Brasil')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20160315', 5000, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Canadá')
+SET @destino = dbo.funct_aux_nombre_codPais('Brasil')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20150815', 1900, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @destino = dbo.funct_aux_nombre_codPais('Italia')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20151215', 4500, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @destino = dbo.funct_aux_nombre_codPais('Japón')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20151115', 4500, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @destino = dbo.funct_aux_nombre_codPais('Italia')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20161015', 4500, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @destino = dbo.funct_aux_nombre_codPais('Japón')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20160815', 4500, @origen, @destino)
+
+-- *****************
+-- Tabla Cargas
+-- *****************
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 1, '1AAAL3201GAA1019')
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 2, '1AAAL3201GAA1019')
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(1, 3, '1BAFE3150FBA1019')
+
+SELECT * FROM Vehiculos;
 
 /*
 *********************************************************************************************

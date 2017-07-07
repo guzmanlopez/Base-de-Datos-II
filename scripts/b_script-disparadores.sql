@@ -135,10 +135,6 @@ VALUES(1, 1, '1AAAL3201GAA1019')
 INSERT INTO Carga(idEnvio, idCarga, vin)
 VALUES(1, 2, '1AAAL3202AAA1019')
 
-SELECT * FROM Vehiculos;
-SELECT * FROM Carga;
-SELECT * FROM Envios; --4575
-
 /*
 *********************************************************************************************
 * c. Definir un trigger que al ingresar un envío, si el país de origen es igual al país de
