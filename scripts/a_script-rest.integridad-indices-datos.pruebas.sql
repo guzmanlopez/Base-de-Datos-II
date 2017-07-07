@@ -135,60 +135,120 @@ ON Carga(vin);
 -- Tabla Paises 
 -- *****************
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Estados Unidos'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('1', 'Estados Unidos');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Canadá'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('2', 'Canadá');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'México'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('3', 'México');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Argentina'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('4', 'Argentina');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Chile'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('5', 'Chile');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Panamá'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('6', 'Panamá');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Pakistán'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('7', 'Pakistán');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'España'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('8', 'España');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Brasil'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('9', 'Brasil');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Japón'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('J', 'Japón');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Korea'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('K', 'Korea');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Inglaterra'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('S', 'Inglaterra');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Alemania'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('W', 'Alemania');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Suecia'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('Y', 'Suecia');
+VALUES(@codPais, @nomPais);
 
+DECLARE @codPais CHARACTER(1)
+DECLARE @nomPais VARCHAR(30)
+SET @nomPais = 'Italia'
+SET @codPais = dbo.funct_aux_nombre_codPais(@nomPais)
 INSERT INTO Paises(codPais, nomPais)
-VALUES('Z', 'Italia');
+VALUES(@codPais, @nomPais);
 
 -- *****************
 -- Tabla Fabricantes
 -- *****************
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('AA', 'Audi', '12 The Horseshoes, Norton, Bury Saint Edmunds IP31', 'audi_factory1@audi.com', 120);
+VALUES('AA', 'Audi', '12 The Horseshoes, IP31', 'audi_factory1@audi.com', 120);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('AB', 'Audi', '14 The Horseshoes, Norton, Bury Saint Edmunds IP31', 'audi_factory2@audi.com', 120);
+VALUES('AB', 'Audi', '14 The Horseshoes, IP31', 'audi_factory2@audi.com', 120);
 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('BA', 'Bmw', '7 Copley St, Batley WF17 8JA', 'bmw_factory1@bmw.com', 100);
@@ -295,19 +355,10 @@ INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('3', 'BS', 'Luxury Automotive Inc', '80 Westchester Ave', 'luxuryb@luxury.com', 'Z');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('1', '4A', 'Druid Auto', '9547 Belmont Rd #21', 'druid@auto.com', '4');
+VALUES('1', 'BS', 'Tailor Made Products Inc', '47 Garfield Ave Swift', 'tailor@tailor.com', 'W');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('2', '4A', 'Arduid Auto', '1 Norris Ave #4095', 'arduid@arduid.com', '5');
-
-INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('3', '4A', 'Ar Auto', '3 Norris Ave #4095', 'arduid2@arduid.com', 'Z');
-
-INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('1', '6A', 'Automotive Consultants', '73 Pittsford Victor Rd', 'autoconsu@autoconsu.com', '4');
-
-INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('2', '6A', 'Butomot Consultants', '5174 Interstate 45 N', 'butomotconsu@butomotconsu.com', 'J');
+VALUES('2', 'BS', 'Heador Made Products Inc', '202 Madison Ave', 'heador@heador.com', 'Y');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('1', 'CA', 'Kalaber Creations', '447 Commercial St Se Lile', 'kalaber@kalaber.com', 'S');
@@ -319,22 +370,13 @@ INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('3', 'CA', 'Kalaber Designs B', '8 Rock Island Rd', 'kalaber2@designs.com', 'J');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('1', 'BS', 'Tailor Made Products Inc', '47 Garfield Ave Swift', 'tailor@tailor.com', 'W');
-
-INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('2', 'BS', 'Heador Made Products Inc', '202 Madison Ave', 'heador@heador.com', 'Y');
+VALUES('1', 'DA', 'Benz Designs', '9 So Ilhung Island Rd', 'benz@designs.com', 'J');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('1', 'FA', 'Valley Propane Inc', '3 Mill Rd Baker Brook', 'valleyprop@valleyprop.com', 'K');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('2', 'FA', 'Valley Buthane Inc', '56 Corporate Dr Becancour', 'valleybuth@valleybuth.com', '3');
-
-INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('1', '7A', 'General White', '136 W Grand Ave #3', 'generalwhite@generalwhite.com', '1');
-
-INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('2', '7A', 'General Black', '7 Tomahawk Dr Richmond', 'generalblack@generalblack.com', 'W');
 
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('1', 'GA', 'Ep Systems', '37 Us Highway 12e', 'epsystems@epsystems.com', 'W');
@@ -357,11 +399,272 @@ VALUES('4', 'HA', 'Campbell Auto Co', '5 Secaucus Rd', 'campbell@autoco.com', '3
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
 VALUES('5', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
 
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', 'RA', 'French Motors', '48 Saint Bois Rd', 'french@fmotors.com', '1');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', '4A', 'Druid Auto', '9547 Belmont Rd #21', 'druid@auto.com', '4');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', '4A', 'Arduid Auto', '1 Norris Ave #4095', 'arduid@arduid.com', '5');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('3', '4A', 'Ar Auto', '3 Norris Ave #4095', 'arduid2@arduid.com', 'Z');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', '6A', 'Automotive Consultants', '73 Pittsford Victor Rd', 'autoconsu@autoconsu.com', '4');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', '6A', 'Butomot Consultants', '5174 Interstate 45 N', 'butomotconsu@butomotconsu.com', 'J');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('1', '7A', 'General White', '136 W Grand Ave #3', 'generalwhite@generalwhite.com', '1');
+
+INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('2', '7A', 'General Black', '7 Tomahawk Dr Richmond', 'generalblack@generalblack.com', 'W');
+
+
 -- *****************
 -- Tabla Vehiculos
 -- *****************
+
+-- Nota: para insertar estos datos es imprescindible haber ejecutado antes: 
+-- b_script de funciones y triggers
+-- script-auxiliar de funciones auxiliares
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @codFab = 'AA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Aluminio','2.0',2015)
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES();
+VALUES (@vin, 'A4', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @codFab = 'AA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Aluminio','2.0',2015)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'A4', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @codFab = 'AA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Aluminio','2.0',2016)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'A4', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @codFab = 'AA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','2.0',2015)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'A4', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @codFab = 'AA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','2.0',2016)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'A4', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Canadá')
+SET @codFab = 'AA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','2.0',2015)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'A4', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Canadá')
+SET @codFab = 'AA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','2.0',2016)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'A4', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @codFab = 'BA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','1.5',2016)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Z3', 'negro', 1200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @codFab = 'BA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','1.5',2015)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Z3', 'negro', 1200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Estados Unidos')
+SET @codFab = 'BA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','1.5',2017)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Z3', 'negro', 1200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Italia')
+SET @codFab = 'BS'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','1.5',2017)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Z3', 'negro', 1200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Italia')
+SET @codFab = 'BS'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','1.5',2016)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Z3', 'negro', 1200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Italia')
+SET @codFab = 'BS'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','1.5',2015)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Z3', 'negro', 1200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Japón')
+SET @codFab = 'CA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','1.5',2015)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Venture', 'caqui', 1200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Japón')
+SET @codFab = 'CA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','1.5',2016)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Venture', 'caqui', 1200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Japón')
+SET @codFab = 'CA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','2.0',2016)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Venture', 'caqui', 1200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Alemania')
+SET @codFab = 'CA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','2.0',2016)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Venture', 'caqui', 1200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Japón')
+SET @codFab = 'DA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','2.0',2015)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Spider', 'Blanco', 1400, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Japón')
+SET @codFab = 'DA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Hierro','2.0',2016)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Spider', 'Blanco', 1400, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+DECLARE @vin CHARACTER(17)
+DECLARE @codPais CHARACTER(1)
+DECLARE @codFab CHARACTER(2)
+SET @codPais = dbo.funct_aux_nombre_codPais('Japón')
+SET @codFab = 'DA'
+SET @vin = dbo.funct_aux_VIN_generator(@codPais,@codFab,'Aluminio','2.0',2017)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES (@vin, 'Spider', 'Blanco', 1400, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', @codPais, @codFab)
+
+-- *****************
+-- Tabla Envios
+-- *****************
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Japón')
+SET @destino = dbo.funct_aux_nombre_codPais('Alemania')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20160315', 3000, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Japón')
+SET @destino = dbo.funct_aux_nombre_codPais('Argentina')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20150615', 4000, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Japón')
+SET @destino = dbo.funct_aux_nombre_codPais('Estados Unidos')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20160815', 3000, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Alemania')
+SET @destino = dbo.funct_aux_nombre_codPais('Estados Unidos')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20160815', 3000, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Italia')
+SET @destino = dbo.funct_aux_nombre_codPais('Canadá')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20150415', 2000, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Italia')
+SET @destino = dbo.funct_aux_nombre_codPais('Pakistán')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20160415', 2000, @origen, @destino)
+
+DECLARE @origen CHARACTER(1)
+DECLARE @destino CHARACTER(1)
+SET @origen = dbo.funct_aux_nombre_codPais('Italia')
+SET @destino = dbo.funct_aux_nombre_codPais('Panamá')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20170115', 2500, @origen, @destino)
+
 
 /*
 *********************************************************************************************
