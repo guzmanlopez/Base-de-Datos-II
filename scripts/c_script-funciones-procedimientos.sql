@@ -15,7 +15,7 @@ USE BD_VEHICULOS;
 *********************************************************************************************
 */
 
--- Funciones auxiliares
+-- Función auxiliar: retorna el valor numérico asociado
 CREATE FUNCTION funct_valor_num_asociado_vin
 (@letravin CHARACTER(1))
 RETURNS INT
@@ -122,6 +122,7 @@ ELSE
 RETURN @ret
 END;
 
+-- Función auxiliar: retorna el factor multiplicador
 CREATE FUNCTION funct_factor_multiplicador_vin
 (@posicionvin INT)
 RETURNS INT
@@ -167,7 +168,7 @@ ELSE IF(@posicionvin = 10)
 RETURN @ret
 END;
 
--- Función principal
+-- Función principal: valida el dígito verificador
 CREATE FUNCTION funct_validar_digitoverificador_vin
 (@vin CHARACTER(17))
 RETURNS CHARACTER(17)
@@ -214,30 +215,29 @@ IF (@resto <> @dv AND @resto <> '10')
 RETURN @ret
 END;
 
--- Tests
-
+/*
 -- Test OK
 DECLARE @output CHARACTER(17)
-SET @output = dbo.funct_validar_digitoverificador_vin('1M8GDM9AXKP042788');
+SET @output = dbo.funct_validar_digitoverificador_vin('1AAFE3203FAA10190');
 PRINT @output
 
 -- Test corregido
 DECLARE @output CHARACTER(17)
-SET @output = dbo.funct_validar_digitoverificador_vin('1M8GDM9A1KP042788');
+SET @output = dbo.funct_validar_digitoverificador_vin('1M8GDM9A1KP042780');
 PRINT @output
 
 -- Test OK
 DECLARE @output CHARACTER(17)
 DECLARE @vin CHARACTER(17)
-SET @vin = 'JN8DF5MV0FT250272'
+SET @vin = 'JN8DF5MV8FT25020'
 SET @output = dbo.funct_validar_digitoverificador_vin(@vin);
 PRINT @output
 
 -- Test corregido
 DECLARE @output CHARACTER(17)
-SET @output = dbo.funct_validar_digitoverificador_vin('JN8DF5MV1FT250272');
+SET @output = dbo.funct_validar_digitoverificador_vin('JN8DF5MV1FT250270');
 PRINT @output
-
+*/
 /*
 *********************************************************************************************
 * b. Crear una función que reciba como parámetro un VIN y retorne el año del modelo de

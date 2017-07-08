@@ -472,170 +472,170 @@ go
 -- *****************
 -- Audi
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1AAFE3203FAA1019', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
+VALUES ('1AAFE3203FAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1AAFE3201GAA1019', 'A4', 'negro', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
+VALUES ('1AAFE3201GAA10190', 'A4', 'negro', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1AAAL320XHAA1019', 'A5', 'negro', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
+VALUES ('1AAAL320XHAA10190', 'A5', 'negro', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('9ABAL320XHAB1019', 'A5', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', 'AB')
+VALUES ('9ABAL320XHAB10190', 'A5', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', 'AB')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('SAAAL3207HAA1019', 'A5', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', 'AA')
+VALUES ('SAAAL3207HAA10190', 'A5', 'gris', 1500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', 'AA')
 go
 -- BMW
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1BAAL3150FBA1019', 'Z3', 'negro', 1000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'BA')
+VALUES ('1BAAL3150FBA10190', 'Z3', 'negro', 1000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'BA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1BAAL3159GBA1019', 'Z3', 'negro', 1000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'BA')
+VALUES ('1BAAL3159GBA10190', 'Z3', 'negro', 1000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'BA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('ZBAFE3201HBA1019', 'Z4', 'gris', 1800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'Z', 'BA')
+VALUES ('ZBAFE3201HBA10190', 'Z4', 'gris', 1800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'Z', 'BA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('5BBFE3204HBB1019', 'Z4', 'negro', 1800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '5', 'BB')
+VALUES ('5BBFE3204HBB10190', 'Z4', 'negro', 1800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '5', 'BB')
 go
 -- Buick
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('S4AFE3201F4A1019', 'LaCrosse', 'negro', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', '4A')
+VALUES ('S4AFE3201F4A10190', 'LaCrosse', 'negro', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', '4A')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('S4AFE320XG4A1019', 'LaCrosse', 'negro', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', '4A')
+VALUES ('S4AFE320XG4A10190', 'LaCrosse', 'negro', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', '4A')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('S4AFE3208H4A1019', 'LaCrosse', 'gris', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', '4A')
+VALUES ('S4AFE3208H4A10190', 'LaCrosse', 'gris', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', '4A')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('64BFE3154G4B1019', 'LaCrosse', 'gris', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '6', '4B')
+VALUES ('64BFE3154G4B10190', 'LaCrosse', 'gris', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '6', '4B')
 go
 -- Cadillac
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('16AFE3201F6A1019', 'XTS', 'gris', 3800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', '6A')
+VALUES ('16AFE3201F6A10190', 'XTS', 'gris', 3800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', '6A')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('16AFE320XG6A1019', 'XTS', 'gris', 3800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', '6A')
+VALUES ('16AFE320XG6A10190', 'XTS', 'gris', 3800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', '6A')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('16AFE3208H6A1019', 'XTS', 'negro', 3800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', '6A')
+VALUES ('16AFE3208H6A10190', 'XTS', 'negro', 3800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', '6A')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('96BFE3208H6B1019', 'XTS', 'negro', 3800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', '6B')
+VALUES ('96BFE3208H6B10190', 'XTS', 'negro', 3800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', '6B')
 go
 -- Chrysler
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('2CAFE3208FCA1019', 'Pacifica', 'negro', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', 'CA')
+VALUES ('2CAFE3208FCA10190', 'Pacifica', 'negro', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', 'CA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('2CAFE3206GCA1019', 'Pacifica', 'negro', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', 'CA')
+VALUES ('2CAFE3206GCA10190', 'Pacifica', 'negro', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', 'CA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('2CAFE3204HCA1019', 'Pacifica', 'gris', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', 'CA')
+VALUES ('2CAFE3204HCA10190', 'Pacifica', 'gris', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', 'CA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('KCAFE3208FCA1019', 'Pacifica', 'verde', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'K', 'CA')
+VALUES ('KCAFE3208FCA10190', 'Pacifica', 'verde', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'K', 'CA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('KCAFE3206GCA1019', 'Pacifica', 'verde', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'K', 'CA')
+VALUES ('KCAFE3206GCA10190', 'Pacifica', 'verde', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'K', 'CA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('KCAFE3204HCA1019', 'Pacifica', 'verde', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'K', 'CA')
+VALUES ('KCAFE3204HCA10190', 'Pacifica', 'verde', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'K', 'CA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('3CBFE3203HCB1019', 'Pacifica', 'rojo', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '3', 'CB')
+VALUES ('3CBFE3203HCB10190', 'Pacifica', 'rojo', 2800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '3', 'CB')
 go
 -- Dodge
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1EAFE3208FEA1019', 'Challenger', 'negro', 3000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'EA')
+VALUES ('1EAFE3208FEA10190', 'Challenger', 'negro', 3000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'EA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1EAFE3206GEA1019', 'Challenger', 'negro', 3000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'EA')
+VALUES ('1EAFE3206GEA10190', 'Challenger', 'negro', 3000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'EA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1EAFE3204HEA1019', 'Challenger', 'negro', 3000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'EA')
+VALUES ('1EAFE3204HEA10190', 'Challenger', 'negro', 3000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'EA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('3EBFE3200HEB1019', 'Challenger', 'negro', 3000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '3', 'EB')
+VALUES ('3EBFE3200HEB10190', 'Challenger', 'negro', 3000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '3', 'EB')
 go
 -- Ford
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1FAFE320XGFA1019', 'Mustang', 'rojo', 3200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'FA')
+VALUES ('1FAFE320XGFA10190', 'Mustang', 'rojo', 3200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'FA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1FAFE3208HFA1019', 'Mustang', 'rojo', 3200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'FA')
+VALUES ('1FAFE3208HFA10190', 'Mustang', 'rojo', 3200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'FA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('WFAFE3204HFA1019', 'Mustang', 'negro', 3200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'W', 'FA')
+VALUES ('WFAFE3204HFA10190', 'Mustang', 'negro', 3200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'W', 'FA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('3FBFE3204HFB1019', 'Mustang', 'gris', 3200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '3', 'FB')
+VALUES ('3FBFE3204HFB10190', 'Mustang', 'gris', 3200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '3', 'FB')
 go
 -- GM
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1GAFE3205FGA1019', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'GA')
+VALUES ('1GAFE3205FGA10190', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'GA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1GAFE3203GGA1019', 'Camaro', 'gris', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'GA')
+VALUES ('1GAFE3203GGA10190', 'Camaro', 'gris', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'GA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('SGAFE3202FGA1019', 'Camaro', 'gris', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', 'GA')
+VALUES ('SGAFE3202FGA10190', 'Camaro', 'gris', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', 'GA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('SGAFE3200GGA1019', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', 'GA')
+VALUES ('SGAFE3200GGA10190', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'S', 'GA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('9GBFE3203GGB1019', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', 'GB')
+VALUES ('9GBFE3203GGB10190', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', 'GB')
 go
 -- GM Canada
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('27AFE3202F7A1019', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', '7A')
+VALUES ('27AFE3202F7A10190', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', '7A')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('27AFE3200G7A1019', 'Camaro', 'gris', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', '7A')
+VALUES ('27AFE3200G7A10190', 'Camaro', 'gris', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', '7A')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('27AFE3209H7A1019', 'Camaro', 'gris', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', '7A')
+VALUES ('27AFE3209H7A10190', 'Camaro', 'gris', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', '7A')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('37BFE320XG7B1019', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '3', '7B')
+VALUES ('37BFE320XG7B10190', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '3', '7B')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('37BFE3208H7B1019', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '3', '7B')
+VALUES ('37BFE3208H7B10190', 'Camaro', 'negro', 5200, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '3', '7B')
 go
 -- Honda
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('JHAFE3207GHA1019', 'Civic', 'gris', 4000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'J', 'HA')
+VALUES ('JHAFE3207GHA10190', 'Civic', 'gris', 4000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'J', 'HA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('JHAFE3205HHA1019', 'Civic', 'negro', 4000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'J', 'HA')
+VALUES ('JHAFE3205HHA10190', 'Civic', 'negro', 4000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'J', 'HA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('KHAFE3206FHA1019', 'Civic', 'gris', 4000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'K', 'HA')
+VALUES ('KHAFE3206FHA10190', 'Civic', 'gris', 4000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'K', 'HA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('KHAFE3204GHA1019', 'Civic', 'negro', 4000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'K', 'HA')
+VALUES ('KHAFE3204GHA10190', 'Civic', 'negro', 4000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'K', 'HA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('5HBFE3208GHB1019', 'Civic', 'gris', 4000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '5', 'HB')
+VALUES ('5HBFE3208GHB10190', 'Civic', 'gris', 4000, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '5', 'HB')
 go
 -- Jaguar
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('YJAFE3202GJA1019', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'Y', 'JA')
+VALUES ('YJAFE3202GJA10190', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'Y', 'JA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('YJAFE3200HJA1019', 'IPACE CONCEPT', 'negro', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'Y', 'JA')
+VALUES ('YJAFE3200HJA10190', 'IPACE CONCEPT', 'negro', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'Y', 'JA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('ZJAFE320XGJA1019', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'Z', 'JA')
+VALUES ('ZJAFE320XGJA10190', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'Z', 'JA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('ZJAFE3208HJA1019', 'IPACE CONCEPT', 'negro', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'Z', 'JA')
+VALUES ('ZJAFE3208HJA10190', 'IPACE CONCEPT', 'negro', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'Z', 'JA')
 go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('9JBFE320XHJB1019', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', 'JB')
+VALUES ('9JBFE320XHJB10190', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', 'JB')
 go
 -- *****************
 -- Tabla Envios
@@ -800,160 +800,160 @@ go
 -- Tabla Cargas
 -- *****************
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(1, 1, '16AFE3201F6A1019', 3990)
+VALUES(1, 1, '16AFE3201F6A10190', 3990)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(2, 2, '16AFE3208H6A1019', 3990)
+VALUES(2, 2, '16AFE3208H6A10190', 3990)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(3, 3, '16AFE320XG6A1019', 3990)
+VALUES(3, 3, '16AFE320XG6A10190', 3990)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(4, 4, '1AAAL320XHAA1019', 1575)
+VALUES(4, 4, '1AAAL320XHAA10190', 1575)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(5, 5, '1AAFE3201GAA1019', 2625)
+VALUES(5, 5, '1AAFE3201GAA10190', 2625)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(6, 6, '1AAFE3203FAA1019', 2625)
+VALUES(6, 6, '1AAFE3203FAA10190', 2625)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(7, 7, '1BAAL3150FBA1019', 1050)
+VALUES(7, 7, '1BAAL3150FBA10190', 1050)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(8, 8, '1BAAL3159GBA1019', 1050)
+VALUES(8, 8, '1BAAL3159GBA10190', 1050)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(9, 9, '1EAFE3204HEA1019', 3150)
+VALUES(9, 9, '1EAFE3204HEA10190', 3150)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(10, 10, '1EAFE3206GEA1019', 3150)
+VALUES(10, 10, '1EAFE3206GEA10190', 3150)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(11, 11, '1EAFE3208FEA1019', 3150)
+VALUES(11, 11, '1EAFE3208FEA10190', 3150)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(12, 12, '1FAFE3208HFA1019', 3360)
+VALUES(12, 12, '1FAFE3208HFA10190', 3360)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(13, 13, '1FAFE320XGFA1019', 3360)
+VALUES(13, 13, '1FAFE320XGFA10190', 3360)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(14, 14, '1GAFE3203GGA1019', 5460)
+VALUES(14, 14, '1GAFE3203GGA10190', 5460)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(15, 15, '1GAFE3205FGA1019', 5460)
+VALUES(15, 15, '1GAFE3205FGA10190', 5460)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(16, 16, '27AFE3200G7A1019', 5460)
+VALUES(16, 16, '27AFE3200G7A10190', 5460)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(17, 17, '27AFE3202F7A1019', 5460)
+VALUES(17, 17, '27AFE3202F7A10190', 5460)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(18, 18, '27AFE3209H7A1019', 5460)
+VALUES(18, 18, '27AFE3209H7A10190', 5460)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(19, 19, '2CAFE3204HCA1019', 2940)
+VALUES(19, 19, '2CAFE3204HCA10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(20, 20, '2CAFE3206GCA1019', 2940)
+VALUES(20, 20, '2CAFE3206GCA10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(21, 21, '2CAFE3208FCA1019', 2940)
+VALUES(21, 21, '2CAFE3208FCA10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(22, 22, '37BFE3208H7B1019', 5460)
+VALUES(22, 22, '37BFE3208H7B10190', 5460)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(23, 23, '37BFE320XG7B1019', 5460)
+VALUES(23, 23, '37BFE320XG7B10190', 5460)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(24, 24, '3CBFE3203HCB1019', 2940)
+VALUES(24, 24, '3CBFE3203HCB10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(25, 25, '3EBFE3200HEB1019', 3150)
+VALUES(25, 25, '3EBFE3200HEB10190', 3150)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(26, 26, '3FBFE3204HFB1019', 3360)
+VALUES(26, 26, '3FBFE3204HFB10190', 3360)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(27, 27, '5BBFE3204HBB1019', 1890)
+VALUES(27, 27, '5BBFE3204HBB10190', 1890)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(28, 28, '5HBFE3208GHB1019', 4200)
+VALUES(28, 28, '5HBFE3208GHB10190', 4200)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(29, 29, '64BFE3154G4B1019', 2940)
+VALUES(29, 29, '64BFE3154G4B10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(30, 30, '96BFE3208H6B1019', 3990)
+VALUES(30, 30, '96BFE3208H6B10190', 3990)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(31, 31, '9ABAL320XHAB1019', 1575)
+VALUES(31, 31, '9ABAL320XHAB10190', 1575)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(32, 32, '9GBFE3203GGB1019', 5460)
+VALUES(32, 32, '9GBFE3203GGB10190', 5460)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(33, 33, '9JBFE320XHJB1019', 3675)
+VALUES(33, 33, '9JBFE320XHJB10190', 3675)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(34, 34, 'JHAFE3205HHA1019', 4200)
+VALUES(34, 34, 'JHAFE3205HHA10190', 4200)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(35, 35, 'JHAFE3207GHA1019', 4200)
+VALUES(35, 35, 'JHAFE3207GHA10190', 4200)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(36, 36, 'KCAFE3204HCA1019', 2940)
+VALUES(36, 36, 'KCAFE3204HCA10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(37, 37, 'KCAFE3206GCA1019', 2940)
+VALUES(37, 37, 'KCAFE3206GCA10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(38, 38, 'KCAFE3208FCA1019', 2940)
+VALUES(38, 38, 'KCAFE3208FCA10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(39, 39, 'KHAFE3204GHA1019', 4200)
+VALUES(39, 39, 'KHAFE3204GHA10190', 4200)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(40, 40, 'KHAFE3206FHA1019', 4200)
+VALUES(40, 40, 'KHAFE3206FHA10190', 4200)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(41, 41, 'S4AFE3201F4A1019', 2940)
+VALUES(41, 41, 'S4AFE3201F4A10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(42, 42, 'S4AFE3208H4A1019', 2940)
+VALUES(42, 42, 'S4AFE3208H4A10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(43, 43, 'S4AFE320XG4A1019', 2940)
+VALUES(43, 43, 'S4AFE320XG4A10190', 2940)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(44, 44, 'SAAAL3207HAA1019', 1575)
+VALUES(44, 44, 'SAAAL3207HAA10190', 1575)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(45, 45, 'SGAFE3200GGA1019', 5460)
+VALUES(45, 45, 'SGAFE3200GGA10190', 5460)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(46, 46, 'SGAFE3202FGA1019', 5460)
+VALUES(46, 46, 'SGAFE3202FGA10190', 5460)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(47, 47, 'WFAFE3204HFA1019', 3360)
+VALUES(47, 47, 'WFAFE3204HFA10190', 3360)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(48, 48, 'YJAFE3200HJA1019', 3675)
+VALUES(48, 48, 'YJAFE3200HJA10190', 3675)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(49, 49, 'YJAFE3202GJA1019', 3675)
+VALUES(49, 49, 'YJAFE3202GJA10190', 3675)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(50, 50, 'ZBAFE3201HBA1019', 1890)
+VALUES(50, 50, 'ZBAFE3201HBA10190', 1890)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(51, 51, 'ZJAFE3208HJA1019', 3675)
+VALUES(51, 51, 'ZJAFE3208HJA10190', 3675)
 go
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
-VALUES(52, 52, 'ZJAFE320XGJA1019', 3675)
+VALUES(52, 52, 'ZJAFE320XGJA10190', 3675)
 go
 /*
 *********************************************************************************************
@@ -963,81 +963,118 @@ go
 -- *****************
 -- Tabla Paises
 -- *****************
-/*
 PRINT('Test PRIMARY KEY: se espera ERROR por repetir codPais')
 INSERT INTO Paises(codPais, nomPais)
 VALUES('1', 'Uruguay');
-
+go
 PRINT('Test PRIMARY KEY: se espera ERROR porque codPais no puede ser nulo')
-
 INSERT INTO Paises(nomPais)
 VALUES('Uruguay');
-
+go
 PRINT('Test UNIQUE nomPais: se espera ERROR porque se repite nomPais')
-  
 INSERT INTO Paises(codPais, nomPais)
 VALUES('H', 'Alemania');
-
+go
 PRINT('Test UNIQUE nomPais: se espera ERROR porque se repite nomPais')
-
 INSERT INTO Paises(codPais, nomPais)
 VALUES('H', 'Suecia');
-
+go
 -- *****************
 -- Tabla Fabricantes
 -- *****************
 PRINT('Test PRIMARY KEY: se espera ERROR por repetir codFab')
-
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('VA', 'Renault', '7 John Knox Ln, 9QW', 'renault_factory1@renault.com', 570);
-
+VALUES('AA', 'Audi', '7 John Knox Ln, 9QW', 'audi_factory1@audi.com', 570);
+go
 PRINT('Test PRIMARY KEY: se espera ERROR porque codFab no puede ser nulo')
-
 INSERT INTO Fabricantes(nomFab, dirFab, mailFab, cantEmp)
 VALUES('Renault', '7 John Knox Ln, 9QW', 'renault_factory1@renault.com', 570);
-
+go
 PRINT('Test UNIQUE mailFab: se espera ERROR porque se repite mailFab')
- 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
-VALUES('XA', 'Renault', '7 John Knox Ln, 9QW', 'volkswagen_factory1@volkswagen.com', 570);
-
+VALUES('XA', 'Renault', '7 John Knox Ln, 9QW', 'audi_factory1@audi.com', 570);
+GO
 PRINT('Test CHECK cantEmp > 0: se espera ERROR porque cantEmp tiene que ser mayor a cero')
- 
 INSERT INTO Fabricantes(codFab, nomFab, dirFab, mailFab, cantEmp)
 VALUES('XA', 'Renault', '7 John Knox Ln, 9QW', 'renault_factory1@renault.com', 0);
-
+go
 -- *****************
 -- Tabla Plantas
 -- *****************
-PRINT('Test PRIMARY KEY: se espera ERROR por repetir codFab')
-
+PRINT('Test PRIMARY KEY: se espera ERROR por repetir codPlan y codFab')
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('5', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
-
+VALUES('1', 'AA', 'Audi USA Motors', '38 Douglas Rd', 'audiusa@motors.com', '4');
+go
 PRINT('Test PRIMARY KEY: se espera ERROR porque codFab no puede ser nulo')
-
 INSERT INTO Plantas(codPlan, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('5', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
-
+VALUES('5', 'Audi USA Motors', '38 Douglas Rd', 'audiusa@motors.com', '4');
+go
+PRINT('Test PRIMARY KEY: se espera ERROR porque codPlan no puede ser nulo')
+INSERT INTO Plantas(codFab, nomPlan, dirPlan, mailPlan, codPais)
+VALUES('5', 'Audi USA Motors', '38 Douglas Rd', 'audiusa@motors.com', '4');
+go
 PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el codFab')
-
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('6', 'HC', 'Campbell Motors', '38 Douglas Rd', 'camp@motors.com', '4');
-
+VALUES('6', 'AC', 'Audi USA Motors', '38 Douglas Rd', 'audiusa@motors.com', '4');
+go
 PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el codPais')
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('6', 'HA', 'Campbell Motors', '38 Douglas Rd', 'camp@motors.com', 'X');
-
+VALUES('6', 'AA', 'Audi USA Motors', '38 Douglas Rd', 'audiusa@motors.com', 'X');
+go
 PRINT('Test UNIQUE mailPlan: se espera ERROR porque se repite mailPlan')
-
 INSERT INTO Plantas(codPlan, codFab, nomPlan, dirPlan, mailPlan, codPais)
-VALUES('6', 'HA', 'Campbell Motors', '38 Douglas Rd', 'campbell@motors.com', '4');
-
+VALUES('6', 'AA', 'Audi USA Motors', '38 Douglas Rd', 'audi@usa.com', '4');
+go
 -- *****************
 -- Tabla Vehiculos
 -- *****************
-*/
-
-
-
-
+PRINT('Test PRIMARY KEY: se espera ERROR por repetir vin')
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('9JBFE320XHJB10190', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', 'JB')
+go
+PRINT('Test PRIMARY KEY: se espera ERROR porque vin no puede ser nulo')
+INSERT INTO Vehiculos(modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', 'JB')
+go
+PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el codPais')
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('9JBFE320XHJB10191', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'L', 'JB')
+go
+PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el codFab')
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('9JBFE320XHJB10191', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', 'JC')
+go
+-- *****************
+-- Tabla Envios
+-- *****************
+PRINT('Test IDENTITY: se espera ERROR porque no se puede insertar en un campo AUTONUMERADO como idEnvio')
+INSERT INTO Envios(idEnvio, fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES (1, '20161008', 3675, 'Z', 'K');
+go
+PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el oriEnvio')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20161008', 3675, 'X', 'K');
+go
+PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el desEnvio')
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20161008', 3675, 'Z', 'X');
+go
+-- *****************
+-- Tabla Carga
+-- *****************
+PRINT('Test PRIMARY KEY: se espera ERROR por repetir idEnvio e idCarga')
+INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
+VALUES(52, 52, 'ZJAFE320XGJA10190', 3675)
+go
+PRINT('Test PRIMARY KEY: se espera ERROR porque idEnvio no puede ser nulo')
+INSERT INTO Carga(idCarga, vin, pesoCarga)
+VALUES(53, 'ZJAFE320XGJA10190', 3675)
+go
+PRINT('Test PRIMARY KEY: se espera ERROR porque idCarga no puede ser nulo')
+INSERT INTO Carga(idEnvio, vin, pesoCarga)
+VALUES(52, 'ZJAFE320XGJA10190', 3675)
+go
+PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el vin')
+INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
+VALUES(52, 53, 'ZJAFE320XGJA10191', 3675)
+go

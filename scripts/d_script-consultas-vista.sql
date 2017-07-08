@@ -22,7 +22,6 @@ FROM Envios E
 WHERE YEAR(E.fchEnvio) = 2015 OR YEAR(E.fchEnvio) = 2016
 GROUP BY YEAR(E.fchEnvio);
 
-
 /*
 *********************************************************************************************
 * b. Mostrar para cada fabricante su nombre, la cantidad de vehículos enviados y el peso
@@ -36,14 +35,14 @@ GROUP BY YEAR(E.fchEnvio);
 
 SELECT F.nomFab AS Nombre_Fabricante,
        COUNT(V.vin) AS Cant_vehiculos_env,
-	   SUM(V.peso*1.05) AS Peso
+	   SUM(V.peso*1.05) AS Peso_Total
 FROM Fabricantes F, Vehiculos V, Carga C, Envios E
 WHERE F.codFab = V.codFab
 AND V.vin = C.vin
 AND C.idEnvio = E.idEnvio
 AND YEAR(E.fchEnvio) = 2016
 GROUP BY F.nomFab
-ORDER BY Peso DESC;
+ORDER BY Peso_Total DESC;
 
 /*
 SELECT F.codFab AS Codigo_Fabricante,
@@ -59,8 +58,6 @@ GROUP BY F.codFab, F.nomFab
 ORDER BY Peso DESC;
 */
 
-
-
 /*
 *********************************************************************************************
 * c. Para todos los países que fueron destino de envíos, mostrar su nombre, su cantidad
@@ -68,6 +65,7 @@ ORDER BY Peso DESC;
 * realizado, si algún país nunca fue destino de envíos igual debe mostrar su nombre.
 *********************************************************************************************
 */
+
 
 
 /*
@@ -130,9 +128,9 @@ ORDER BY Peso DESC;
 *********************************************************************************************
 */
 
-ALTER VIEW vista_codPais_cantVehiculos AS
-SELECT P.nomPais AS País_de_fabricación, 
-	   COUNT(DISTINCT(V.vin)) AS Cantidad_vehiculos_enviados
+CREATE VIEW vista_codPais_cantVehiculos AS
+SELECT P.nomPais AS Pais_de_fabricacion, 
+	   COUNT(DISTINCT(V.vin)) AS Cant_vehiculos_env
 FROM Vehiculos V, Carga C, Envios E, Paises P
 WHERE C.idEnvio = E.idEnvio
 AND E.desEnvio <> V.codPais
@@ -141,4 +139,4 @@ GROUP BY P.nomPais;
 
 -- Test
 SELECT * FROM vista_codPais_cantVehiculos
-ORDER BY Cantidad_vehiculos_enviados DESC;
+ORDER BY Cant_vehiculos_env DESC;

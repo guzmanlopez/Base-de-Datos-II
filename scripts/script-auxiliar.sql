@@ -3,14 +3,14 @@
 * Script auxiliar con funciones para facilitar el ingreso de datos de prueba y tests
 *********************************************************************************************
 */
-
+USE BD_VEHICULOS;
 /*
 *********************************************************************************************
 * Dado un nombre de país retornar su código
 *********************************************************************************************
 */
 
-ALTER FUNCTION funct_aux_nombre_codPais
+CREATE FUNCTION funct_aux_nombre_codPais
 (@nombre VARCHAR(30))
 RETURNS CHARACTER(1)
 BEGIN
@@ -74,7 +74,6 @@ ELSE
 
 RETURN @ret
 END;
-
 
 -- Test
 DECLARE @output CHARACTER(1)
@@ -546,8 +545,10 @@ BEGIN
 DECLARE @ret CHARACTER(8)
 DECLARE @codAnio CHARACTER(1)
 DECLARE @codCifras CHARACTER(4)
+DECLARE @numArbit CHARACTER(1)
 
 SET @codAnio = dbo.funct_anio_cod(@anio)
+SET @numArbit = 0
 
 IF(@anio BETWEEN 2010 AND 2019)
 	BEGIN
@@ -565,8 +566,12 @@ IF(@anio BETWEEN 2029 AND 2039)
 	BEGIN
 	SET @codCifras = '2939'
 	END
+ELSE IF(@anio < 2010 OR @anio > 2039)
+	BEGIN
+	SET @codCifras = '5555'
+	END
 
-SET @ret = @codAnio + @codFab + @codCifras
+SET @ret = @codAnio + @codFab + @codCifras + @numArbit
 
 RETURN @ret
 END
@@ -606,6 +611,7 @@ END
 DECLARE @output CHARACTER(17)
 SET @output = dbo.funct_aux_VIN_generator('1','AA','Aluminio','2.0',2025)
 PRINT @output
+
 
 DECLARE @output CHARACTER(17)
 SET @output = dbo.funct_aux_VIN_generator('1','BS','Hierro','1.0',2015)

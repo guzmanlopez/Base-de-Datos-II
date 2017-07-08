@@ -13,7 +13,36 @@ USE BD_VEHICULOS;
 *********************************************************************************************
 */
 
-CREATE TRIGGER trigger_validar_vin_insert_vehiculo
+-- Función auxiliar: impide VIN con caracteres I, O, Q o Ñ
+CREATE FUNCTION funct_impedir_caracteres_vin
+(@vin CHARACTER(17))
+RETURNS BIT
+AS
+BEGIN
+DECLARE @ret BIT
+
+SET @ret = 1
+
+-- Recorrer VIN 
+DECLARE @ite INT
+SET @ite = 1
+WHILE (@ite < 18 AND @ret = 1)
+	BEGIN
+	IF(SUBSTRING(@vin,@ite,1) IN ('I','O','Q','Ñ'))
+	BEGIN
+	SET @ret = 0
+	END	
+SET @ite = @ite + 1
+	END	
+RETURN @ret
+END;
+
+DECLARE @caracteres BIT
+SET @caracteres = dbo.funct_impedir_caracteres_vin('1AAÑL3205EAA10190')
+PRINT @caracteres
+
+-- Trigger
+ALTER TRIGGER trigger_validar_vin_insert_vehiculo
 ON Vehiculos 
 INSTEAD OF INSERT
 AS
@@ -22,65 +51,93 @@ DECLARE @vin CHARACTER(17)
 DECLARE @codPais CHARACTER(1)
 DECLARE @codFab CHARACTER(2)
 DECLARE @codFabPais CHARACTER(2)
+DECLARE @caracteres BIT
 
 SET @codPais = ''
 SET @codFab = ''
 SET @codFabPais = ''
+SET @caracteres = 1
 
-SELECT @vin = dbo.funct_validar_digitoverificador_vin(I.vin) 
-FROM inserted I 
+-- Validar caracteres no permitidos
+SELECT @caracteres = dbo.funct_impedir_caracteres_vin(I.vin)
+FROM inserted I
 
--- Check codPais
-SELECT @codPais = (I.codPais) 
-FROM inserted I, Paises P
-WHERE I.codPais = P.codPais 
+IF(@caracteres = 1)
+BEGIN
+	SELECT @vin = dbo.funct_validar_digitoverificador_vin(I.vin) 
+	FROM inserted I 
 
--- Check codFab
-SELECT @codFab = (I.codFab) 
-FROM inserted I, Fabricantes F
-WHERE I.codFab = F.codFab
+	-- Check codPais
+	SELECT @codPais = (I.codPais) 
+	FROM inserted I, Paises P
+	WHERE I.codPais = P.codPais 
 
--- Check codPais y codFab
-SELECT @codFabPais = (I.codFab) 
-FROM inserted I, Plantas P
-WHERE I.codFab = P.codFab
-AND I.codPais = P.codPais
+	-- Check codFab
+	SELECT @codFab = (I.codFab) 
+	FROM inserted I, Fabricantes F
+	WHERE I.codFab = F.codFab
 
-IF (@codPais = '')
-	BEGIN
-	PRINT 'No existe el [codPais] para el vehículo que se quiere ingresar' 
-	END
-ELSE IF (@codFab = '')
-	BEGIN
-	PRINT 'No existe el [codFab] para el vehículo que se quiere ingresar' 
-	END
-ELSE IF (@codFabPais = '')
-	BEGIN
-	PRINT 'No existe la planta para el vehículo que se quiere ingresar' 
-	END
-ELSE IF (@vin <> 'OK')
-	BEGIN
-	INSERT INTO Vehiculos
-	SELECT @vin, I.modelo, I.color, I.peso, I.caracteristicas, I.codPais, I.codFab
-	FROM INSERTED I
-	PRINT 'VEHICULO INGRESADO (VIN CORREGIDO!)'
-	END
-ELSE IF (@vin = 'OK')
-	BEGIN
-	INSERT INTO Vehiculos
-	SELECT I.vin, I.modelo, I.color, I.peso, I.caracteristicas, I.codPais, I.codFab
-	FROM INSERTED I
-	PRINT 'VEHICULO INGRESADO (VIN OK)'
-	END
+	-- Check codPais y codFab
+	SELECT @codFabPais = (I.codFab) 
+	FROM inserted I, Plantas P
+	WHERE I.codFab = P.codFab
+	AND I.codPais = P.codPais
+
+	IF (@codPais = '')
+		BEGIN
+		PRINT 'No existe el [codPais] para el vehículo que se quiere ingresar' 
+		END
+	ELSE IF (@codFab = '')
+		BEGIN
+		PRINT 'No existe el [codFab] para el vehículo que se quiere ingresar' 
+		END
+	ELSE IF (@codFabPais = '')
+		BEGIN
+		PRINT 'No existe la planta para el vehículo que se quiere ingresar' 
+		END
+	ELSE IF (@vin <> 'OK')
+		BEGIN
+		INSERT INTO Vehiculos
+		SELECT @vin, I.modelo, I.color, I.peso, I.caracteristicas, I.codPais, I.codFab
+		FROM INSERTED I
+		PRINT 'VEHICULO INGRESADO (VIN CORREGIDO!)'
+		END
+	ELSE IF (@vin = 'OK')
+		BEGIN
+		INSERT INTO Vehiculos
+		SELECT I.vin, I.modelo, I.color, I.peso, I.caracteristicas, I.codPais, I.codFab
+		FROM INSERTED I
+		PRINT 'VEHICULO INGRESADO (VIN OK)'
+		END
 END
+ELSE
+	BEGIN
+	PRINT 'CARACTERES EN vin NO PERMITIDOS'
+	END
+END;
+
 
 -- Test OK, vin OK
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1M8GDM9AXKP042788', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1', 'RA')
+VALUES ('1AAAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
+
+-- Test ERROR: caracter no permitido Ñ
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('1AÑAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
+
 
 -- Test OK, vin CORREGIDO
-INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
-VALUES ('1M8GDM9AXKP042789', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1', 'RA')
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('1AAAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
+
+
+-- Test
+DECLARE @output CHARACTER(17)
+SET @output = dbo.funct_aux_VIN_generator('1','AB','Aluminio','2.0',2014)
+PRINT @output
+
+'1ABAL3204EAB10190'
+
 
 -- Test ERROR, no existe codPais
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
@@ -94,11 +151,6 @@ VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
 VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '2', 'RA')
 
--- Ver Ingresos
-SELECT * FROM Vehiculos;
-
-DELETE FROM Vehiculos;
-
 /*
 *********************************************************************************************
 * b. Crear un trigger al ingresar una línea de carga, ponga el peso correcto de acuerdo al
@@ -106,7 +158,6 @@ DELETE FROM Vehiculos;
 * peso total del envío.
 *********************************************************************************************
 */
-
 CREATE TRIGGER trigger_peso_insert_carga
 ON Carga 
 INSTEAD OF INSERT
@@ -128,13 +179,14 @@ FROM inserted I3, Vehiculos V2
 WHERE I3.vin = V2.vin
 END;
 
+/*
 -- Test OK
 INSERT INTO Carga(idEnvio, idCarga, vin)
 VALUES(1, 1, '1AAAL3201GAA1019')
 
 INSERT INTO Carga(idEnvio, idCarga, vin)
 VALUES(1, 2, '1AAAL3202AAA1019')
-
+*/
 /*
 *********************************************************************************************
 * c. Definir un trigger que al ingresar un envío, si el país de origen es igual al país de
