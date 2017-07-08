@@ -215,7 +215,6 @@ IF (@resto <> @dv AND @resto <> '10')
 RETURN @ret
 END;
 
-/*
 -- Test OK
 DECLARE @output CHARACTER(17)
 SET @output = dbo.funct_validar_digitoverificador_vin('1AAFE3203FAA10190');
@@ -223,21 +222,9 @@ PRINT @output
 
 -- Test corregido
 DECLARE @output CHARACTER(17)
-SET @output = dbo.funct_validar_digitoverificador_vin('1M8GDM9A1KP042780');
+SET @output = dbo.funct_validar_digitoverificador_vin('1AAFE3209FAA10190');
 PRINT @output
 
--- Test OK
-DECLARE @output CHARACTER(17)
-DECLARE @vin CHARACTER(17)
-SET @vin = 'JN8DF5MV8FT25020'
-SET @output = dbo.funct_validar_digitoverificador_vin(@vin);
-PRINT @output
-
--- Test corregido
-DECLARE @output CHARACTER(17)
-SET @output = dbo.funct_validar_digitoverificador_vin('JN8DF5MV1FT250270');
-PRINT @output
-*/
 /*
 *********************************************************************************************
 * b. Crear una función que reciba como parámetro un VIN y retorne el año del modelo de
@@ -380,15 +367,15 @@ IF(@digitoAnio = '9')
 RETURN @ret
 END;
 
--- Test 
+-- Test 2015
 DECLARE @output INT
-SET @output = dbo.funct_aniodelmodelo_vin('JN8DF5MV0FT250272');
+SET @output = dbo.funct_aniodelmodelo_vin('1AAFE3203FAA10190');
 PRINT @output
 
+-- Test 2016
 DECLARE @output INT
-SET @output = dbo.funct_aniodelmodelo_vin('1M8GDM9A0GP042788');
+SET @output = dbo.funct_aniodelmodelo_vin('1AAFE3201GAA10190');
 PRINT @output
-
 
 /*
 *********************************************************************************************
@@ -397,10 +384,36 @@ PRINT @output
 *********************************************************************************************
 */
 
+CREATE FUNCTION funct_fechas_cantvehiculos_pais_maxcant
+(@fchIni DATE, @fchFin DATE)
+RETURNS INT
+AS
+BEGIN
+DECLARE @ret INT
 
+SELECT @ret = COUNT(V.vin)
+FROM Vehiculos V, Envios E, Carga C
+WHERE V.vin = C.vin
+AND E.idEnvio = C.idEnvio
+AND E.fchEnvio BETWEEN @fchIni AND @fchFin
+GROUP BY E.desEnvio
+HAVING COUNT(V.vin) >= ALL(SELECT COUNT(V2.vin)
+						  FROM Vehiculos V2, Envios E2, Carga C2
+						  WHERE V2.vin = C2.vin
+						  AND E2.idEnvio = C2.idEnvio
+						  AND E2.fchEnvio BETWEEN @fchIni AND @fchFin
+						  GROUP BY E2.desEnvio)
+RETURN @ret
+END;
 
-
-
+-- Test
+DECLARE @fchIni DATE
+DECLARE @fchFin DATE
+DECLARE @output INT
+SET @fchIni = '20150101' 
+SET @fchFin = '20170620'
+SET @output = dbo.funct_fechas_cantvehiculos_pais_maxcant(@fchIni, @fchFin)
+PRINT @output
 
 /*
 *********************************************************************************************
@@ -410,6 +423,53 @@ PRINT @output
 * código ‘#’ que tenga como descripción ‘LOCAL’ y poner ese dato como destino.
 *********************************************************************************************
 */
+
+CREATE PROCEDURE sp_fechasenvio_cambiapaisdestino
+@fchIni DATE,
+@fchFin DATE
+AS
+BEGIN
+UPDATE Envios
+SET desEnvio = '#'
+WHERE fchEnvio BETWEEN @fchIni AND @fchFin
+AND desEnvio IN (SELECT E.desEnvio
+				 FROM Vehiculos V, Carga C, Envios E
+				 WHERE V.vin = C.vin
+				 AND C.idEnvio = E.idEnvio
+				 AND E.fchEnvio BETWEEN @fchIni AND @fchFin
+				 AND V.codPais = E.desEnvio)
+END;
+
+-- Test procedure
+
+-- Insertar país local en la tabla Paises
+INSERT INTO Paises(codPais, nomPais)
+VALUES('#', 'LOCAL');
+
+-- Insertar un envío cuyo destino final sea el país que lo fabrico
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20151008', 0, '2', '1');
+
+-- Insertar Carga (1 auto para el envío creado)
+INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
+VALUES((SELECT idEnvio FROM Envios
+	    WHERE fchEnvio = '20151008'
+	    AND oriEnvio = '2'
+	    AND desEnvio = '1'), 1, '16AFE3201F6A10190', 3800)
+
+-- Ejecutar procedure sin cambios
+EXEC sp_fechasenvio_cambiapaisdestino '20170101', '20170105'  
+
+SELECT * 
+FROM Envios E
+WHERE E.desEnvio = '#'
+
+-- Ejecutar procedure con cambios
+EXEC sp_fechasenvio_cambiapaisdestino '20150101', '20151231'  
+
+SELECT * 
+FROM Envios E
+WHERE E.desEnvio = '#'
 
 
 /*

@@ -151,10 +151,6 @@ IF(@codFabSinDiv = 'P')
 	BEGIN
 	SET @ret = 'Plymounth'
 	END
-IF(@codFabSinDiv = 'R')
-	BEGIN
-	SET @ret = 'Renault'
-	END
 IF(@codFabSinDiv = 'S')
 	BEGIN
 	SET @ret = 'Saab'
@@ -609,7 +605,7 @@ END
 
 -- Test
 DECLARE @output CHARACTER(17)
-SET @output = dbo.funct_aux_VIN_generator('1','AA','Aluminio','2.0',2025)
+SET @output = dbo.funct_aux_VIN_generator('1','AA','Aluminio','2.0',2017)
 PRINT @output
 
 
