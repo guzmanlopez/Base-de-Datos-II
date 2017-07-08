@@ -116,40 +116,41 @@ ELSE
 	END
 END;
 
-
 -- Test OK, vin OK
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
 VALUES ('1AAAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
-
--- Test ERROR: caracter no permitido Ñ
-INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1AÑAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
-
 
 -- Test OK, vin CORREGIDO
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
 VALUES ('1AAAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
 
+-- Test ERROR, caracter no permitido I
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('1AIAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
 
--- Test
-DECLARE @output CHARACTER(17)
-SET @output = dbo.funct_aux_VIN_generator('1','AB','Aluminio','2.0',2014)
-PRINT @output
+-- Test ERROR, caracter no permitido O
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('1AOAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
 
-'1ABAL3204EAB10190'
+-- Test ERROR, caracter no permitido Q
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('1AQAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
 
+-- Test ERROR, caracter no permitido Ñ
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('1AÑAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
 
 -- Test ERROR, no existe codPais
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
-VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', 'O', 'RA')
+VALUES ('XAAAL3204EAA10190', 'A4', 'verde', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'X', 'AA')
 
 -- Test ERROR, no existe codFab
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
-VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '1', 'RS')
+VALUES ('XAAAL3204EAA10190', 'A4', 'verde', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AC')
 
--- Test ERROR, no existe la planta 
+-- Test ERROR, no existe codFab para el codPais (no existe la planta)
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
-VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '2', 'RA')
+VALUES ('XAAAL3204EAA10190', 'A4', 'verde', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', 'AA')
 
 /*
 *********************************************************************************************
@@ -158,6 +159,7 @@ VALUES ('1M8GDM9AXKP042787', 'Twingo', 'verde', 1251, 'frenos ABS, AC, FULL', '2
 * peso total del envío.
 *********************************************************************************************
 */
+
 CREATE TRIGGER trigger_peso_insert_carga
 ON Carga 
 INSTEAD OF INSERT
@@ -179,14 +181,29 @@ FROM inserted I3, Vehiculos V2
 WHERE I3.vin = V2.vin
 END;
 
-/*
+
 -- Test OK
 INSERT INTO Carga(idEnvio, idCarga, vin)
-VALUES(1, 1, '1AAAL3201GAA1019')
+VALUES(1, 2, '16AFE3201F6A10190')
 
 INSERT INTO Carga(idEnvio, idCarga, vin)
-VALUES(1, 2, '1AAAL3202AAA1019')
-*/
+VALUES(2, 2, '16AFE3208H6A10190')
+
+-- Test OK, ingresar 3 cargas más al idEnvio = 52
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(52, 2, 'ZJAFE320XGJA10190')
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(52, 3, 'ZJAFE320XGJA10190')
+
+INSERT INTO Carga(idEnvio, idCarga, vin)
+VALUES(52, 4, 'ZJAFE320XGJA10190')
+
+-- Ver cargas del idEnvio = 52
+SELECT *
+FROM Carga
+WHERE idEnvio = 52;
+
 /*
 *********************************************************************************************
 * c. Definir un trigger que al ingresar un envío, si el país de origen es igual al país de
@@ -207,24 +224,17 @@ AND I.oriEnvio <> I2.desEnvio
 END
 
 -- Test OK
-INSERT INTO Envios
-VALUES(GETDATE(),1200,1,2);
-
-INSERT INTO Envios
-VALUES(GETDATE(),1300,1,3);
-
-INSERT INTO Envios
-VALUES(GETDATE(),2300,2,3);
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20150315', 3990, '1', 'Z');
 
 -- Test no procesa línea
-INSERT INTO Envios
-VALUES(GETDATE(),1200,1,1);
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20150315', 3990, '1', '1');
 
--- Ver tabla
-SELECT * FROM Envios;
-
--- Eliminar todo
-DELETE FROM Envios;
+-- Ver tabla (el idEnvio = 55 corresponde a la inserción Test OK)
+SELECT * 
+FROM Envios
+WHERE fchEnvio = '20150315';
 
 /*
 *********************************************************************************************
@@ -247,25 +257,24 @@ DELETE FROM Envios
 WHERE idEnvio IN (SELECT D2.idEnvio FROM deleted D2)
 END;
 
-
--- Test 
-INSERT INTO Carga
-VALUES(12, 4, '1AAAL3201GAA1019 ', 2000);
-
-INSERT INTO Carga
-VALUES(12, 7, '1AAAL3202AAA1019 ', 4000);
-
 -- Test OK
 DELETE FROM Envios
-WHERE idEnvio = 5;
+WHERE idEnvio = 55;
 
+SELECT * 
+FROM Envios
+WHERE idEnvio = 55;
+
+-- Múltiple (borra las cuatro cargas del idEnvio = 52 en la tabla Carga y el propio idEnvio = 52 en la tabla Envios)
 DELETE FROM Envios
-WHERE idEnvio = 6;
+WHERE idEnvio = 52;
 
--- Múltiple
-DELETE FROM Envios
-WHERE desEnvio = 2;
+-- Ver cargas del idEnvio = 52
+SELECT *
+FROM Carga
+WHERE idEnvio = 52;
 
--- Ver tabla
-SELECT * FROM Envios;
-SELECT * FROM Carga;
+-- Ver idEnvio = 52
+SELECT *
+FROM Envios
+WHERE idEnvio = 52;
