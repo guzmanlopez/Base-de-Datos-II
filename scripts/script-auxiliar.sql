@@ -67,6 +67,10 @@ ELSE IF(@nombre = 'Italia')
 	BEGIN
 	SET @ret = 'Z'
 	END
+ELSE IF(@nombre = 'Holanda')
+	BEGIN
+	SET @ret = 'H'
+	END
 ELSE
 	BEGIN
 	SET @ret = '-'

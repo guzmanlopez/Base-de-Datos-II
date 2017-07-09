@@ -45,20 +45,6 @@ GROUP BY F.nomFab
 ORDER BY Peso_Total DESC;
 
 /*
-SELECT F.codFab AS Codigo_Fabricante,
-	   F.nomFab AS Nombre_Fabricante,
-       COUNT(V.vin) AS Cant_vehiculos_env,
-	   SUM(V.peso) AS Peso
-FROM Fabricantes F, Vehiculos V, Carga C, Envios E
-WHERE F.codFab = V.codFab
-AND V.vin = C.vin
-AND C.idEnvio = E.idEnvio
-AND YEAR(E.fchEnvio) = 2016
-GROUP BY F.codFab, F.nomFab
-ORDER BY Peso DESC;
-*/
-
-/*
 *********************************************************************************************
 * c. Para todos los países que fueron destino de envíos, mostrar su nombre, su cantidad
 * de envíos en los 20 primeros días de enero de 2016 y la fecha del último envío
@@ -66,7 +52,18 @@ ORDER BY Peso DESC;
 *********************************************************************************************
 */
 
+-- En relación a la fecha, la consulta devuelve la última fecha de envío para los envíos en los primeros 20 días del mes de Enero de 2016. Si se deseara obtener la última fecha de envío para ese país (independiente de los días, el mes y el año) se debe modificar MAX(E2.fchEnvio) por MAX(E.fchEnvio)
 
+SELECT P.nomPais AS Nombre_de_pais, 
+	   COUNT(DISTINCT(E2.idEnvio)) AS Cantidad_de_envios,
+	   MAX(E2.fchEnvio) AS Fecha_del_ultimo_envio	
+FROM Paises P
+LEFT JOIN Envios E
+ON P.codPais = E.desEnvio
+LEFT JOIN Envios E2
+ON P.codPais = E2.desEnvio
+AND E2.fchEnvio BETWEEN '20160101' AND '20160120'
+GROUP BY P.nomPais;
 
 /*
 *********************************************************************************************
@@ -75,6 +72,29 @@ ORDER BY Peso DESC;
 *********************************************************************************************
 */
 
+SELECT F.codFab, F.nomFab, F.dirFab, F.mailFab
+FROM Fabricantes F
+WHERE F.codFab IN (SELECT F2.codFab
+				   FROM Fabricantes F2, Vehiculos V, Carga C, Envios E
+				   WHERE F2.codFab = V.codFab
+				   AND V.vin = C.vin
+				   AND C.idEnvio = E.idEnvio
+				   GROUP BY F2.codFab, E.idEnvio
+				   HAVING COUNT(C.idCarga) > 500)
+AND F.codFab NOT IN (SELECT F3.codFab
+					 FROM Fabricantes F3, Vehiculos V2, Carga C2, Envios E2
+					 WHERE F3.codFab = V2.codFab
+					 AND V2.vin = C2.vin
+					 AND C2.idEnvio = E2.idEnvio
+					 AND F3.codFab IN (SELECT F4.codFab
+									   FROM Fabricantes F4, Vehiculos V3, Carga C3, Envios E3
+					                   WHERE F4.codFab = V3.codFab
+				                       AND V3.vin = C3.vin
+				                       AND C3.idEnvio = E3.idEnvio
+				                       GROUP BY F4.codFab, E3.idEnvio
+				                       HAVING COUNT(C3.idCarga) < 100) 
+					GROUP BY F3.codFab, E2.idEnvio
+					HAVING COUNT(*) > 3);
 
 /*
 *********************************************************************************************
@@ -82,6 +102,8 @@ ORDER BY Peso DESC;
 * reciente.
 *********************************************************************************************
 */
+
+
 
 
 /*
@@ -92,7 +114,26 @@ ORDER BY Peso DESC;
 *********************************************************************************************
 */
 
-
+SELECT F.codFab, F.nomFab, F.dirFab, F.mailFab
+FROM Fabricantes F
+WHERE F.codFab NOT IN (SELECT F2.codFab
+					   FROM Fabricantes F2, Vehiculos V, Carga C, Envios E
+					   WHERE F2.codFab = V.codFab
+					   AND V.vin = C.vin
+					   AND C.idEnvio = E.idEnvio
+					   AND E.fchEnvio BETWEEN '20160101' AND '20160630')
+AND F.codFab IN (SELECT F3.codFab
+			     FROM Fabricantes F3, Vehiculos V2, Carga C2, Envios E2
+				 WHERE F3.codFab = V2.codFab
+				 AND V2.vin = C2.vin
+				 AND C2.idEnvio = E2.idEnvio
+				 AND YEAR(E2.fchEnvio) = '2017')
+AND F.codFab IN (SELECT F4.codFab
+			     FROM Fabricantes F4, Vehiculos V3, Carga C3, Envios E3
+				 WHERE F4.codFab = V3.codFab
+				 AND V3.vin = C3.vin
+				 AND C3.idEnvio = E3.idEnvio
+				 AND E3.desEnvio = 'H')
 
 /*
 *********************************************************************************************
@@ -136,7 +177,8 @@ WHERE C.idEnvio = E.idEnvio
 AND E.desEnvio <> V.codPais
 AND V.codPais = P.codPais
 GROUP BY P.nomPais;
-
+go
 -- Test
 SELECT * FROM vista_codPais_cantVehiculos
 ORDER BY Cant_vehiculos_env DESC;
+go

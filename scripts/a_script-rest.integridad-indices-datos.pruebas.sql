@@ -1078,3 +1078,13 @@ PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el vin')
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
 VALUES(52, 53, 'ZJAFE320XGJA10191', 3675)
 go
+-- Insertar datos para que la consulta f) no sea vacía
+INSERT INTO Paises(codPais, nomPais)
+VALUES('H', 'Holanda');
+go
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20170308', 3675, '1', 'H');
+go
+INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
+VALUES((SELECT idEnvio FROM Envios WHERE fchEnvio = '20170308'), 1, 'YJAFE3200HJA10190', 3675)
+-- Insertar datos para que la consulta d) no sea vacía

@@ -177,7 +177,6 @@ FROM inserted I3, Vehiculos V2
 WHERE I3.vin = V2.vin
 END;
 
-
 -- Test OK
 INSERT INTO Carga(idEnvio, idCarga, vin)
 VALUES(1, 2, '16AFE3201F6A10190')
