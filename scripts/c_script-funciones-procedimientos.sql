@@ -457,20 +457,19 @@ VALUES((SELECT idEnvio FROM Envios
 	    AND oriEnvio = '2'
 	    AND desEnvio = '1'), 1, '16AFE3201F6A10190', 3800)
 
--- Ejecutar procedure sin cambios
+-- Ejecutar procedure sin cambios por no coincidir fechas
 EXEC sp_fechasenvio_cambiapaisdestino '20170101', '20170105'  
 
 SELECT * 
 FROM Envios E
-WHERE E.desEnvio = '#'
+WHERE E.desEnvio = '#';
 
 -- Ejecutar procedure con cambios
 EXEC sp_fechasenvio_cambiapaisdestino '20150101', '20151231'  
 
 SELECT * 
 FROM Envios E
-WHERE E.desEnvio = '#'
-
+WHERE E.desEnvio = '#';
 
 /*
 *********************************************************************************************
@@ -479,6 +478,42 @@ WHERE E.desEnvio = '#'
 *********************************************************************************************
 */
 
+-- Nota: si hay más de un país con la menor cantidad de vehículos en dicho rango solo va a mostrar uno. 
+
+CREATE FUNCTION funct_fechas_nompais_menorcantvehic
+(@fchIni DATE, @fchFin DATE)
+RETURNS VARCHAR(30)
+AS
+BEGIN
+DECLARE @ret VARCHAR(30)
+
+SELECT @ret = P.nomPais
+FROM Paises P, Envios E
+WHERE P.codPais = E.desEnvio 
+AND E.fchEnvio BETWEEN @fchIni AND @fchFin
+GROUP BY P.nomPais
+HAVING COUNT(E.idEnvio) <=ALL(SELECT COUNT(E2.idEnvio)
+							  FROM Paises P2, Envios E2
+							  WHERE P2.codPais = E2.desEnvio 
+							  AND E2.fchEnvio BETWEEN @fchIni AND @fchFin
+							  GROUP BY P2.nomPais)
+RETURN @ret
+END;
+
+-- Test 
+DECLARE @output VARCHAR(30)
+SET @output = dbo.funct_fechas_nompais_menorcantvehic('20100101',GETDATE())
+PRINT @output
+
+-- Durante 2015
+DECLARE @output VARCHAR(30)
+SET @output = dbo.funct_fechas_nompais_menorcantvehic('20150101','20151231')
+PRINT @output
+
+-- Durante 2016
+DECLARE @output VARCHAR(30)
+SET @output = dbo.funct_fechas_nompais_menorcantvehic('20160101','20161231')
+PRINT @output
 
 /*
 *********************************************************************************************
@@ -488,5 +523,53 @@ WHERE E.desEnvio = '#'
 *********************************************************************************************
 */
 
+-- Con el codFab
+CREATE PROCEDURE sp_codfab_cantplantas_cantmodelosvehic
+@codFab CHARACTER(2),
+@cantPlantas INT OUTPUT,
+@cantModelosVehic INT OUTPUT
+AS
+BEGIN
+SELECT @cantPlantas = COUNT(DISTINCT(P.codPlan)), @cantModelosVehic = COUNT(DISTINCT(V.modelo))
+FROM Fabricantes F, Plantas P, Vehiculos V
+WHERE F.codFab = V.codFab
+AND F.codFab = P.codFab
+AND F.codFab = @codFab
+GROUP BY F.codFab
+END;
 
+-- Test para codFab = AA
+DECLARE @out1 INT
+DECLARE @out2 INT
+EXEC sp_codfab_cantplantas_cantmodelosvehic 'AA', @out1 OUTPUT, @out2 OUTPUT  
+PRINT 'Cant_plantas: ' + CAST(@out1 AS CHARACTER(2)) + '| Cant_modelos: ' + CAST(@out2 AS CHARACTER(2))
+
+-- Test para codFab = JA
+DECLARE @out1 INT
+DECLARE @out2 INT
+EXEC sp_codfab_cantplantas_cantmodelosvehic 'JA', @out1 OUTPUT, @out2 OUTPUT  
+PRINT 'Cant_plantas: ' + CAST(@out1 AS CHARACTER(2)) + '| Cant_modelos: ' + CAST(@out2 AS CHARACTER(2))
+
+-- Misma función pero ingresando el nombre de un fabricante sin distinguir entre sus divisiones, para retornar la cantidad de plantas y la cantidad de modelos de la marce "Audi" por ejemplo:
+
+-- Con el codFab
+CREATE PROCEDURE sp_nomfab_cantplantas_cantmodelosvehic
+@nomFab VARCHAR(30),
+@cantPlantas INT OUTPUT,
+@cantModelosVehic INT OUTPUT
+AS
+BEGIN
+SELECT @cantPlantas = COUNT(DISTINCT(P.codPlan)), @cantModelosVehic = COUNT(DISTINCT(V.modelo))
+FROM Fabricantes F, Plantas P, Vehiculos V
+WHERE F.codFab = V.codFab
+AND F.codFab = P.codFab
+AND F.nomFab = @nomFab
+GROUP BY F.nomFab
+END;
+
+-- Test para 'Audi'
+DECLARE @out1 INT
+DECLARE @out2 INT
+EXEC sp_nomfab_cantplantas_cantmodelosvehic 'Audi', @out1 OUTPUT, @out2 OUTPUT  
+PRINT 'Cant_plantas: ' + CAST(@out1 AS CHARACTER(2)) + '| Cant_modelos: ' + CAST(@out2 AS CHARACTER(2))
 

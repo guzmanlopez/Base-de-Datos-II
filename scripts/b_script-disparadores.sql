@@ -37,12 +37,8 @@ SET @ite = @ite + 1
 RETURN @ret
 END;
 
-DECLARE @caracteres BIT
-SET @caracteres = dbo.funct_impedir_caracteres_vin('1AAÑL3205EAA10190')
-PRINT @caracteres
-
 -- Trigger
-ALTER TRIGGER trigger_validar_vin_insert_vehiculo
+CREATE TRIGGER trigger_validar_vin_insert_vehiculo
 ON Vehiculos 
 INSTEAD OF INSERT
 AS
