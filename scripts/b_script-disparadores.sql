@@ -109,7 +109,7 @@ VALUES ('1AAAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado
 
 -- Test OK, vin CORREGIDO
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
-VALUES ('1AAAL3205EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
+VALUES ('1AAAL3154EAA10190', 'A4', 'gris', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', 'AA')
 
 -- Test ERROR, caracter no permitido I
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
@@ -138,6 +138,7 @@ VALUES ('XAAAL3204EAA10190', 'A4', 'verde', 2500, 'Frenos ABS, Aire Acondicionad
 -- Test ERROR, no existe codFab para el codPais (no existe la planta)
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab) 
 VALUES ('XAAAL3204EAA10190', 'A4', 'verde', 2500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '2', 'AA')
+
 
 /*
 *********************************************************************************************
@@ -216,7 +217,7 @@ VALUES ('20150315', 3990, '1', 'Z');
 INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
 VALUES ('20150315', 3990, '1', '1');
 
--- Ver tabla (el idEnvio = 55 corresponde a la inserción Test OK)
+-- Ver tabla (el idEnvio = 62 corresponde a la inserción Test OK)
 SELECT * 
 FROM Envios
 WHERE fchEnvio = '20150315';

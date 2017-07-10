@@ -220,7 +220,7 @@ DECLARE @output CHARACTER(17)
 SET @output = dbo.funct_validar_digitoverificador_vin('1AAFE3203FAA10190');
 PRINT @output
 
--- Test corregido
+-- Test devuelve VIN corregido
 DECLARE @output CHARACTER(17)
 SET @output = dbo.funct_validar_digitoverificador_vin('1AAFE3209FAA10190');
 PRINT @output
@@ -438,7 +438,6 @@ AND desEnvio IN (SELECT E.desEnvio
 				 AND E.fchEnvio BETWEEN @fchIni AND @fchFin
 				 AND V.codPais = E.desEnvio)
 END;
-
 
 -- Test procedure
 -- Insertar país local en la tabla Paises

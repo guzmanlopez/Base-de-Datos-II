@@ -645,6 +645,10 @@ go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
 VALUES ('WDAFE3150HDA10190', 'Spyder', 'negro', 2100, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'W', 'DA')
 go
+--Pontiac
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('12AFE3204G2A10190', 'Sunbird', 'blanco', 3800, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '1', '2A')
+go
 -- *****************
 -- Tabla Envios
 -- *****************
@@ -1109,16 +1113,16 @@ END;
 go
 -- Crear envío
 DECLARE @pesoTotal NUMERIC(12,2)
-SELECT @pesoTotal = peso*1.05*600 FROM Vehiculos WHERE vin = 'WDAFE3150HDA10190' 
+SELECT @pesoTotal = peso*1.05*600 FROM Vehiculos WHERE vin = '12AFE3204G2A10190' 
 INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
-VALUES ('20170408', @pesoTotal, 'W', '2');
+VALUES ('20170408', @pesoTotal, '1', '2');
 go
 -- Insertar cargas al envío creado
 DECLARE @idE INT
 DECLARE @peso NUMERIC(12,2)
 SELECT @idE = idEnvio FROM Envios WHERE fchEnvio = '20170408'
-SELECT @peso = peso*1.05 FROM Vehiculos WHERE vin = 'WDAFE3150HDA10190' 
-EXEC sp_insertar_datos_query_d @idE, 1, 'WDAFE3150HDA10190', @peso, 600
+SELECT @peso = peso*1.05 FROM Vehiculos WHERE vin = '12AFE3204G2A10190' 
+EXEC sp_insertar_datos_query_d @idE, 1, '12AFE3204G2A10190', @peso, 600
 go
 -- *****************
 -- Insertar datos para que la consulta F) no sea vacía
@@ -1155,12 +1159,12 @@ go
 DECLARE @pesoTotal NUMERIC(12,2)
 SELECT @pesoTotal = peso*1.05*1 FROM Vehiculos WHERE vin = 'WDAFE3202EDA10190' 
 INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
-VALUES ('20160310', @pesoTotal, 'W', '9');
+VALUES ('20160910', @pesoTotal, 'W', '9');
 go
 -- Crear cargas para el envío creado
 DECLARE @idE INT
 DECLARE @peso NUMERIC(12,2)
-SELECT @idE = idEnvio FROM Envios WHERE fchEnvio = '20160310'
+SELECT @idE = idEnvio FROM Envios WHERE fchEnvio = '20160910'
 SELECT @peso = peso*1.05 FROM Vehiculos WHERE vin = 'WDAFE3202EDA10190' 
 EXEC sp_insertar_datos_query_d @idE, 1, 'WDAFE3202EDA10190', @peso, 1
 go
