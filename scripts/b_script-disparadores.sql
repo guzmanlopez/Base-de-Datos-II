@@ -243,13 +243,6 @@ WHERE idEnvio IN (SELECT D2.idEnvio FROM deleted D2)
 END;
 
 -- Test OK
-DELETE FROM Envios
-WHERE idEnvio = 1;
-
-SELECT * 
-FROM Envios
-WHERE idEnvio = 1;
-
 -- Múltiple (borra las cuatro cargas del idEnvio = 52 en la tabla Carga y el propio idEnvio = 52 en la tabla Envios)
 DELETE FROM Envios
 WHERE idEnvio = 52;

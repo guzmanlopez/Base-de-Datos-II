@@ -1162,7 +1162,7 @@ DECLARE @idE INT
 DECLARE @peso NUMERIC(12,2)
 SELECT @idE = idEnvio FROM Envios WHERE fchEnvio = '20160310'
 SELECT @peso = peso*1.05 FROM Vehiculos WHERE vin = 'WDAFE3202EDA10190' 
-EXEC sp_insertar_datos_query_d @idE, 1, 'YJAFE3200HJA10190', @peso, 10
+EXEC sp_insertar_datos_query_d @idE, 1, 'WDAFE3202EDA10190', @peso, 1
 go
 -- *****************
 -- Insertar datos para que la consulta I) no sea vacía
