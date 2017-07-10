@@ -123,23 +123,23 @@ AND E.fchEnvio >=ALL(SELECT E2.fchEnvio
 SELECT F.codFab, F.nomFab, F.dirFab, F.mailFab
 FROM Fabricantes F
 WHERE F.codFab NOT IN (SELECT F2.codFab
-					   FROM Fabricantes F2, Vehiculos V, Carga C, Envios E
-					   WHERE F2.codFab = V.codFab
-					   AND V.vin = C.vin
-					   AND C.idEnvio = E.idEnvio
-					   AND E.fchEnvio BETWEEN '20160101' AND '20160630')
+					   FROM Fabricantes F2, Vehiculos V2, Carga C2, Envios E2
+					   WHERE F2.codFab = V2.codFab
+					   AND V2.vin = C2.vin
+					   AND C2.idEnvio = E2.idEnvio
+					   AND E2.fchEnvio BETWEEN '20160101' AND '20160630')
 AND F.codFab IN (SELECT F3.codFab
-			     FROM Fabricantes F3, Vehiculos V2, Carga C2, Envios E2
-				 WHERE F3.codFab = V2.codFab
-				 AND V2.vin = C2.vin
-				 AND C2.idEnvio = E2.idEnvio
-				 AND YEAR(E2.fchEnvio) = '2017')
-AND F.codFab IN (SELECT F4.codFab
-			     FROM Fabricantes F4, Vehiculos V3, Carga C3, Envios E3
-				 WHERE F4.codFab = V3.codFab
+			     FROM Fabricantes F3, Vehiculos V3, Carga C3, Envios E3
+				 WHERE F3.codFab = V3.codFab
 				 AND V3.vin = C3.vin
 				 AND C3.idEnvio = E3.idEnvio
-				 AND E3.desEnvio = 'H')
+				 AND YEAR(E3.fchEnvio) = '2017')
+AND F.codFab IN (SELECT F4.codFab
+			     FROM Fabricantes F4, Vehiculos V4, Carga C4, Envios E4
+				 WHERE F4.codFab = V4.codFab
+				 AND V4.vin = C4.vin
+				 AND C4.idEnvio = E4.idEnvio
+				 AND E4.desEnvio = 'H')
 
 /*
 *********************************************************************************************

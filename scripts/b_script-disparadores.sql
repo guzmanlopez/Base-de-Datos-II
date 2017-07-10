@@ -3,6 +3,7 @@
 * Script con disparadores                                                                   *
 *********************************************************************************************
 */
+
 USE BD_VEHICULOS;
 
 /*
@@ -19,9 +20,7 @@ RETURNS BIT
 AS
 BEGIN
 DECLARE @ret BIT
-
 SET @ret = 1
-
 -- Recorrer VIN 
 DECLARE @ite INT
 SET @ite = 1
@@ -47,37 +46,30 @@ DECLARE @codPais CHARACTER(1)
 DECLARE @codFab CHARACTER(2)
 DECLARE @codFabPais CHARACTER(2)
 DECLARE @caracteres BIT
-
 SET @codPais = ''
 SET @codFab = ''
 SET @codFabPais = ''
 SET @caracteres = 1
-
 -- Validar caracteres no permitidos
 SELECT @caracteres = dbo.funct_impedir_caracteres_vin(I.vin)
 FROM inserted I
-
 IF(@caracteres = 1)
 BEGIN
 	SELECT @vin = dbo.funct_validar_digitoverificador_vin(I.vin) 
 	FROM inserted I 
-
 	-- Check codPais
 	SELECT @codPais = (I.codPais) 
 	FROM inserted I, Paises P
 	WHERE I.codPais = P.codPais 
-
 	-- Check codFab
 	SELECT @codFab = (I.codFab) 
 	FROM inserted I, Fabricantes F
 	WHERE I.codFab = F.codFab
-
 	-- Check codPais y codFab
 	SELECT @codFabPais = (I.codFab) 
 	FROM inserted I, Plantas P
 	WHERE I.codFab = P.codFab
 	AND I.codPais = P.codPais
-
 	IF (@codPais = '')
 		BEGIN
 		PRINT 'No existe el [codPais] para el vehículo que se quiere ingresar' 
@@ -167,7 +159,6 @@ SET pesoEnvio = pesoEnvio + (SELECT SUM(V.peso * 1.05)
 							AND I.idEnvio = E.idEnvio)
 FROM inserted I2, Envios E2
 WHERE E2.idEnvio = I2.idEnvio;
-
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
 SELECT I3.idEnvio, I3.idCarga, I3.vin, (SELECT SUM(V2.peso * 1.05)
 							FROM inserted I3, Vehiculos V2
@@ -253,11 +244,11 @@ END;
 
 -- Test OK
 DELETE FROM Envios
-WHERE idEnvio = 55;
+WHERE idEnvio = 1;
 
 SELECT * 
 FROM Envios
-WHERE idEnvio = 55;
+WHERE idEnvio = 1;
 
 -- Múltiple (borra las cuatro cargas del idEnvio = 52 en la tabla Carga y el propio idEnvio = 52 en la tabla Envios)
 DELETE FROM Envios

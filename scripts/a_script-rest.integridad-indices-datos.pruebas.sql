@@ -640,6 +640,9 @@ VALUES ('9JBFE320XHJB10190', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Ac
 go
 --Mercedes Benz
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('WDAFE3209GDA10190', 'Hatchback', 'blanco', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'W', 'DA')
+go
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
 VALUES ('WDAFE3150HDA10190', 'Spyder', 'negro', 2100, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'W', 'DA')
 go
 -- *****************
@@ -1126,7 +1129,7 @@ VALUES('H', 'Holanda');
 go
 -- Crear un envío
 DECLARE @pesoTotal NUMERIC(12,2)
-SELECT @pesoTotal = peso*1.05*20 FROM Vehiculos WHERE vin = 'YJAFE3200HJA10190' 
+SELECT @pesoTotal = peso*1.05*20 FROM Vehiculos WHERE vin = 'WDAFE3209GDA10190' 
 INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
 VALUES ('20170308', @pesoTotal, '1', 'H');
 go
@@ -1134,8 +1137,8 @@ go
 DECLARE @idE INT
 DECLARE @peso NUMERIC(12,2)
 SELECT @idE = idEnvio FROM Envios WHERE fchEnvio = '20170308'
-SELECT @peso = peso*1.05 FROM Vehiculos WHERE vin = 'YJAFE3200HJA10190' 
-EXEC sp_insertar_datos_query_d @idE, 1, 'YJAFE3200HJA10190', @peso, 20
+SELECT @peso = peso*1.05 FROM Vehiculos WHERE vin = 'WDAFE3209GDA10190' 
+EXEC sp_insertar_datos_query_d @idE, 1, 'WDAFE3209GDA10190', @peso, 20
 go
 -- *****************
 -- Insertar datos para que la consulta H) no sea vacía

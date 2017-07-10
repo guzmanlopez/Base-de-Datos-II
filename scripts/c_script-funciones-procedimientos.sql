@@ -390,7 +390,6 @@ RETURNS INT
 AS
 BEGIN
 DECLARE @ret INT
-
 SELECT @ret = COUNT(V.vin)
 FROM Vehiculos V, Envios E, Carga C
 WHERE V.vin = C.vin
@@ -440,8 +439,8 @@ AND desEnvio IN (SELECT E.desEnvio
 				 AND V.codPais = E.desEnvio)
 END;
 
--- Test procedure
 
+-- Test procedure
 -- Insertar país local en la tabla Paises
 INSERT INTO Paises(codPais, nomPais)
 VALUES('#', 'LOCAL');
@@ -486,7 +485,6 @@ RETURNS VARCHAR(30)
 AS
 BEGIN
 DECLARE @ret VARCHAR(30)
-
 SELECT @ret = P.nomPais
 FROM Paises P, Envios E
 WHERE P.codPais = E.desEnvio 
