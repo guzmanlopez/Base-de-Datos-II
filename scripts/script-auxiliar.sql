@@ -607,10 +607,10 @@ SET @output = dbo.funct_aux_VIN_generator('1','BS','Hierro','1.0',2015)
 PRINT @output
 
 DECLARE @output CHARACTER(17)
-SET @output = dbo.funct_aux_VIN_generator('W','DA','Hierro','1.5',2017)
+SET @output = dbo.funct_aux_VIN_generator('J','HA','Hierro','1.5',2016)
 PRINT @output
 
 -- Verificar VIN
 DECLARE @output CHARACTER(17)
-SET @output = dbo.funct_validar_digitoverificador_vin('WDAFE3154HDA10190');
+SET @output = dbo.funct_validar_digitoverificador_vin('JHAFE3154GHA10190');
 PRINT @output
