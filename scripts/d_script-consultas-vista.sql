@@ -96,8 +96,6 @@ AND F.codFab NOT IN (SELECT F3.codFab
 					GROUP BY F3.codFab, E3.idEnvio
 					HAVING COUNT(F3.codFab) > 3);
 
-
-
 /*
 *********************************************************************************************
 * e. Obtener todos los datos de los vehículos que fueron enviados en la fecha más
