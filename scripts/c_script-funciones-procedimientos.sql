@@ -445,15 +445,21 @@ INSERT INTO Paises(codPais, nomPais)
 VALUES('#', 'LOCAL');
 
 -- Insertar un envío cuyo destino final sea el país que lo fabrico
+DECLARE @pesoTot NUMERIC(12,2)
+SELECT @pesoTot = peso*1.05 FROM Vehiculos WHERE vin = '16AFE3201F6A10190'
+
 INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
-VALUES ('20151008', 0, '2', '1');
+VALUES ('20151008', @pesoTot, '2', '1');
 
 -- Insertar Carga (1 auto para el envío creado)
+DECLARE @pesoTot NUMERIC(12,2)
+SELECT @pesoTot = peso*1.05 FROM Vehiculos WHERE vin = '16AFE3201F6A10190'
+
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
 VALUES((SELECT idEnvio FROM Envios
 	    WHERE fchEnvio = '20151008'
 	    AND oriEnvio = '2'
-	    AND desEnvio = '1'), 1, '16AFE3201F6A10190', 3800)
+	    AND desEnvio = '1'), 1, '16AFE3201F6A10190', @pesoTot)
 
 -- Ejecutar procedure sin cambios por no coincidir fechas
 EXEC sp_fechasenvio_cambiapaisdestino '20170101', '20170105'  

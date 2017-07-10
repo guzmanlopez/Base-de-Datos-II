@@ -1189,11 +1189,11 @@ EXEC sp_insertar_datos_query_d @idE, 1, 'JHAFE3150GHA10190', @peso, 150
 go
 -- Crear envío para mes 08
 DECLARE @pesoTotal NUMERIC(12,2)
-SELECT @pesoTotal = peso*1.05*150 FROM Vehiculos WHERE vin = 'JHAFE3150GHA10190' 
+SELECT @pesoTotal = peso*1.05*110 FROM Vehiculos WHERE vin = 'JHAFE3150GHA10190' 
 INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
 VALUES ('20160825', @pesoTotal, 'J', 'W');
 go
--- Insertar cargas al envío creado (150 autos)
+-- Insertar cargas al envío creado (110 autos)
 DECLARE @idE INT
 DECLARE @peso NUMERIC(12,2)
 SELECT @idE = idEnvio FROM Envios WHERE fchEnvio = '20160825'
