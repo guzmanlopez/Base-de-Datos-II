@@ -498,7 +498,6 @@ DECLARE @codChasis CHARACTER(2)
 DECLARE @codMotor CHARACTER(2)
 DECLARE @rand1 CHARACTER(1)
 DECLARE @rand2 CHARACTER(1)
-
 IF(@tipoChasis = 'Aluminio')
 	BEGIN
 	SET @codChasis = 'AL'
@@ -507,7 +506,6 @@ IF(@tipoChasis = 'Hierro')
 	BEGIN
 	SET @codChasis = 'FE'
 	END
-
 IF(@modeloMotor = '1.0')
 	BEGIN
 	SET @codMotor = '10'
@@ -520,13 +518,11 @@ IF(@modeloMotor = '2.0')
 	BEGIN
 	SET @codMotor = '20'
 	END
-
 SET @rand1 = '3'
 SET @rand2 = '4'
 SET @ret = @codChasis + @rand1 + @codMotor + @rand2
-
 RETURN @ret
-END
+END;
 
 -- Test
 DECLARE @output CHARACTER(6)
@@ -546,10 +542,8 @@ DECLARE @ret CHARACTER(8)
 DECLARE @codAnio CHARACTER(1)
 DECLARE @codCifras CHARACTER(4)
 DECLARE @numArbit CHARACTER(1)
-
 SET @codAnio = dbo.funct_anio_cod(@anio)
 SET @numArbit = 0
-
 IF(@anio BETWEEN 2010 AND 2019)
 	BEGIN
 	SET @codCifras = '1019'
@@ -570,11 +564,9 @@ ELSE IF(@anio < 2010 OR @anio > 2039)
 	BEGIN
 	SET @codCifras = '5555'
 	END
-
 SET @ret = @codAnio + @codFab + @codCifras + @numArbit
-
 RETURN @ret
-END
+END;
 
 -- Test
 DECLARE @output CHARACTER(8)
@@ -598,21 +590,27 @@ DECLARE @ret CHARACTER(17)
 DECLARE @WMI CHARACTER(3)
 DECLARE @VDS CHARACTER(6)
 DECLARE @VIS CHARACTER(8)
-
 SET @WMI = dbo.funct_aux_crear_WMI(@codPais, @codFab)
 SET @VDS = dbo.funct_aux_crear_VDS(@tipoChasis, @tipoMotor)
 SET @VIS = dbo.funct_aux_crear_VIS(@Anio, @codFab)
 SET @ret = @WMI + @VDS + @VIS
-
 RETURN @ret
-END
+END;
 
 -- Test
 DECLARE @output CHARACTER(17)
 SET @output = dbo.funct_aux_VIN_generator('1','AA','Aluminio','2.0',2017)
 PRINT @output
 
-
 DECLARE @output CHARACTER(17)
 SET @output = dbo.funct_aux_VIN_generator('1','BS','Hierro','1.0',2015)
+PRINT @output
+
+DECLARE @output CHARACTER(17)
+SET @output = dbo.funct_aux_VIN_generator('W','DA','Hierro','1.5',2017)
+PRINT @output
+
+-- Verificar VIN
+DECLARE @output CHARACTER(17)
+SET @output = dbo.funct_validar_digitoverificador_vin('WDAFE3154HDA10190');
 PRINT @output

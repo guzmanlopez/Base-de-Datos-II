@@ -637,6 +637,10 @@ go
 INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
 VALUES ('9JBFE320XHJB10190', 'IPACE CONCEPT', 'gris', 3500, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', '9', 'JB')
 go
+--Mercedes Benz
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('WDAFE3150HDA10190', 'Spyder', 'negro', 2100, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'W', 'DA')
+go
 -- *****************
 -- Tabla Envios
 -- *****************
@@ -1077,14 +1081,111 @@ go
 PRINT('Test FOREIGN KEY: se espera ERROR porque no existe el vin')
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
 VALUES(52, 53, 'ZJAFE320XGJA10191', 3675)
-go
--- Insertar datos para que la consulta f) no sea vacía
+
+-- *****************
+-- Insertar datos de cargas para que la consulta D) no sea vacía
+-- *****************
+CREATE PROCEDURE sp_insertar_datos_query_d
+@idEnvio INT, 
+@desdeidCarga INT,
+@vin CHARACTER(17),
+@pesoCarga NUMERIC(12,2),
+@cantCargas INT
+AS
+BEGIN
+DECLARE @ite INT
+SET @ite = @desdeidCarga
+WHILE (@ite <= @cantCargas)
+	BEGIN
+	INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
+    VALUES(@idEnvio, @ite, @vin, @pesoCarga)
+SET @ite = @ite + 1
+	END	
+END;
+
+-- Crear envío
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20170408', 0, 'W', '2');
+
+-- Insertar cargas al envío creado
+DECLARE @idE INT
+DECLARE @peso NUMERIC(12,2)
+SELECT @idE = idEnvio FROM Envios WHERE fchEnvio = '20170408'
+SELECT @peso = peso*1.05 FROM Vehiculos WHERE vin = 'WDAFE3150HDA10190' 
+EXEC sp_insertar_datos_query_d @idE, 1, 'WDAFE3150HDA10190', @peso, 600
+
+-- *****************
+-- Insertar datos para que la consulta F) no sea vacía
+-- *****************
+
+-- Crear país Holanda en Tabla Paises
 INSERT INTO Paises(codPais, nomPais)
 VALUES('H', 'Holanda');
-go
+
+-- Crear un envío
 INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
 VALUES ('20170308', 3675, '1', 'H');
-go
+
+-- Crear una carga para el envío creado
 INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
 VALUES((SELECT idEnvio FROM Envios WHERE fchEnvio = '20170308'), 1, 'YJAFE3200HJA10190', 3675)
--- Insertar datos para que la consulta d) no sea vacía
+
+-- *****************
+-- Insertar datos para que la consulta H) no sea vacía
+-- *****************
+
+-- Vehículo sin envío
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('WDAFE3200FDA10190', 'E500', 'gris', 3300, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'W', 'DA')
+
+-- Vehículo enviado (dos años después de su fabricación)
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('WDAFE3202EDA10190', 'E500', 'gris', 3300, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'W', 'DA')
+
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20160310', 0, 'W', '9');
+
+-- Crear una carga para el envío creado
+INSERT INTO Carga(idEnvio, idCarga, vin, pesoCarga)
+VALUES((SELECT idEnvio FROM Envios WHERE fchEnvio = '20160310'), 1, 'WDAFE3202EDA10190', 3300)
+
+-- *****************
+-- Insertar datos para que la consulta I) no sea vacía
+-- *****************
+
+-- Insertar Vehículo 
+INSERT INTO Vehiculos(vin, modelo, color, peso, caracteristicas, codPais, codFab)
+VALUES ('JHAFE3150GHA10190', 'Avancier', 'rojo', 4300, 'Frenos ABS, Aire Acondicionado y tapizado de cuero', 'J', 'HA')
+
+-- Crear envío para mes 04
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20160420', 0, 'J', 'W');
+
+-- Insertar cargas al envío creado (150 autos)
+DECLARE @idE INT
+DECLARE @peso NUMERIC(12,2)
+SELECT @idE = idEnvio FROM Envios WHERE fchEnvio = '20160420'
+SELECT @peso = peso*1.05 FROM Vehiculos WHERE vin = 'JHAFE3150GHA10190' 
+EXEC sp_insertar_datos_query_d @idE, 1, 'JHAFE3150GHA10190', @peso, 150
+
+-- Crear envío para mes 08
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20160825', 0, 'J', 'W');
+
+-- Insertar cargas al envío creado (150 autos)
+DECLARE @idE INT
+DECLARE @peso NUMERIC(12,2)
+SELECT @idE = idEnvio FROM Envios WHERE fchEnvio = '20160825'
+SELECT @peso = peso*1.05 FROM Vehiculos WHERE vin = 'JHAFE3150GHA10190' 
+EXEC sp_insertar_datos_query_d @idE, 1, 'JHAFE3150GHA10190', @peso, 110
+
+-- Crear envío para mes 12
+INSERT INTO Envios(fchEnvio, pesoEnvio, oriEnvio, desEnvio)
+VALUES ('20161221', 0, 'J', 'W');
+
+-- Insertar cargas al envío creado (menos de 20 autos = 15)
+DECLARE @idE INT
+DECLARE @peso NUMERIC(12,2)
+SELECT @idE = idEnvio FROM Envios WHERE fchEnvio = '20161221'
+SELECT @peso = peso*1.05 FROM Vehiculos WHERE vin = 'JHAFE3150GHA10190' 
+EXEC sp_insertar_datos_query_d @idE, 1, 'JHAFE3150GHA10190', @peso, 15

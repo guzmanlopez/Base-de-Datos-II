@@ -103,8 +103,14 @@ AND F.codFab NOT IN (SELECT F3.codFab
 *********************************************************************************************
 */
 
-
-
+SELECT V.vin, V.modelo, V.color, V.peso, V.caracteristicas, V.codPais, V.codFab
+FROM Vehiculos V, Carga C, Envios E
+WHERE V.vin = C.vin
+AND E.idEnvio = C.idEnvio
+AND E.fchEnvio >=ALL(SELECT E2.fchEnvio
+					 FROM Vehiculos V2, Carga C2, Envios E2
+					 WHERE V2.vin = C2.vin
+					 AND E2.idEnvio = C2.idEnvio);
 
 /*
 *********************************************************************************************
@@ -142,15 +148,32 @@ AND F.codFab IN (SELECT F4.codFab
 *********************************************************************************************
 */
 
-
+SELECT V.vin, 
+       V.modelo, 
+	   V.peso,
+	   MAX(E.fchEnvio) AS Fecha_ultimo_envio,
+	   F.nomFab AS Nombre_fabricante
+FROM Vehiculos V, Carga C, Envios E, Fabricantes F
+WHERE V.vin = C.vin
+AND E.idEnvio = C.idEnvio
+AND F.codFab = V.codFab
+AND V.peso < 2300
+GROUP BY V.vin, V.modelo, V.peso, F.nomFab;
 
 /*
 *********************************************************************************************
-* h. Bajar el peso en un 5% a todos los vehículos que no nunca fueron enviados pasado 1
+* h. Bajar el peso en un 5% a todos los vehículos que nunca fueron enviados pasado 1
 * año de su fabricación (puede utilizar la función 4b).
 *********************************************************************************************
 */
 
+UPDATE Vehiculos
+SET peso = peso - peso * 0.05
+WHERE vin NOT IN (SELECT V.vin
+				  FROM Vehiculos V, Carga C, Envios E
+			      WHERE V.vin = C.vin
+			      AND E.idEnvio = C.idEnvio
+			      AND YEAR(E.fchEnvio) - dbo.funct_aniodelmodelo_vin(V.vin) < 1)
 
 /*
 *********************************************************************************************
@@ -160,6 +183,26 @@ AND F.codFab IN (SELECT F4.codFab
 *********************************************************************************************
 */
 
+SELECT F.codFab, F.nomFab, F.dirFab, F.mailFab
+FROM Fabricantes F, Plantas P
+WHERE  F.codFab = P.codFab
+AND F.codFab IN (SELECT F2.codFab
+				   FROM Fabricantes F2, Vehiculos V2, Carga C2, Envios E2
+				   WHERE F2.codFab = V2.codFab
+				   AND V2.vin = C2.vin
+				   AND C2.idEnvio = E2.idEnvio
+				   AND YEAR(E2.fchEnvio) = '2016'
+				   GROUP BY MONTH(E2.fchEnvio), F2.codFab, E2.idEnvio
+				   HAVING COUNT(C2.idCarga) > 100)
+AND F.codFab IN (SELECT F3.codFab
+				 FROM Fabricantes F3, Vehiculos V3, Carga C3, Envios E3
+				 WHERE F3.codFab = V3.codFab
+				 AND V3.vin = C3.vin
+				 AND C3.idEnvio = E3.idEnvio
+				 AND YEAR(E3.fchEnvio) = '2016'
+				 GROUP BY MONTH(E3.fchEnvio), F3.codFab, E3.idEnvio
+				 HAVING COUNT(C3.idCarga) < 20)
+AND P.codPais = 'J';
 
 /*
 *********************************************************************************************
@@ -171,11 +214,12 @@ AND F.codFab IN (SELECT F4.codFab
 
 CREATE VIEW vista_codPais_cantVehiculos AS
 SELECT P.nomPais AS Pais_de_fabricacion, 
-	   COUNT(DISTINCT(V.vin)) AS Cant_vehiculos_env
+	   COUNT(C.vin) AS Cant_vehiculos_env
 FROM Vehiculos V, Carga C, Envios E, Paises P
-WHERE C.idEnvio = E.idEnvio
-AND E.desEnvio <> V.codPais
-AND V.codPais = P.codPais
+WHERE V.codPais = P.codPais
+AND V.vin = C.vin 
+AND V.codPais <> E.desEnvio
+AND E.idEnvio = C.idEnvio
 GROUP BY P.nomPais;
 go
 -- Test
